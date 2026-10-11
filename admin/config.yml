@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: nextgenfindsqofficial-png/A-D
   branch: main
 
 media_folder: "images"
