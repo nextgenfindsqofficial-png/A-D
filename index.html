@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A&D FOODS | Authentic Sri Lankan Cuisine</title>
     <script>
-    
-        const PERMANENT_ADMIN_PASSWORD = "SarojaFoods@123#";
+        // 🔑 මෙතනින් ඔයාට ඕන PASSWORD එක වෙනස් කරගන්න:
+        const PERMANENT_ADMIN_PASSWORD = "admin123";
     </script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -339,10 +339,13 @@
             if (newPrice === null) return;
             const newDesc = prompt("Edit Description:", item.description);
             if (newDesc === null) return;
+            const newImage = prompt("Edit Image URL (Link):", item.image);
+            if (newImage === null) return;
 
             item.title = newTitle;
             item.price = newPrice;
             item.description = newDesc;
+            item.image = newImage;
 
             localStorage.setItem('adminMenu', JSON.stringify(menu));
             renderAdminMenuList();
@@ -366,7 +369,7 @@
             if (!price) return;
             const description = prompt("Enter Description:");
             if (!description) return;
-            const image = prompt("Enter Image URL (optional):") || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80";
+            const image = prompt("Enter Image URL (Link):") || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80";
 
             const menu = getMenu();
             const newItem = {
