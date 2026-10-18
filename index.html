@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A&D FOODS - Authentic Sri Lankan Cuisine</title>
-    <!-- Tailwind CSS CDN -->
+    <title>A&D FOODS | Authentic Sri Lankan Culinary Experience</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts - Inter & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -27,13 +23,13 @@
                             800: '#92400e',
                             900: '#78350f',
                         },
-                        spice: {
-                            500: '#e11d48',
-                            600: '#be123c',
+                        spicy: {
+                            500: '#ef4444',
+                            600: '#dc2626',
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
                     }
                 }
@@ -41,903 +37,410 @@
         }
     </script>
     <style>
-        .glass-nav {
-            background: rgba(15, 23, 42, 0.85);
+        .glass-header {
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
         }
-        .food-card-shadow {
-            box-shadow: 0 10px 30px -10px rgba(217, 119, 6, 0.15);
-        }
-        .food-card-shadow:hover {
-            box-shadow: 0 20px 40px -15px rgba(217, 119, 6, 0.3);
+        .hero-pattern {
+            background-image: radial-gradient(rgba(217, 119, 6, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- NAVIGATION BAR -->
-    <nav class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-slate-800/80 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <a href="#home" class="flex items-center gap-3 group">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-brand-600 to-amber-400 p-0.5 shadow-lg shadow-brand-600/30">
-                        <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center">
-                            <span class="font-serif font-bold text-xl text-amber-400 tracking-wider">A&D</span>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="font-serif font-bold text-xl text-white block leading-tight group-hover:text-amber-400 transition">A&D FOODS</span>
-                        <span class="text-[10px] tracking-widest text-brand-500 uppercase font-semibold">Authentic Sri Lankan</span>
-                    </div>
-                </a>
-
-                <!-- Desktop Nav Links -->
-                <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                    <a href="#home" class="text-amber-400 hover:text-amber-300 transition">Home</a>
-                    <a href="#menu" class="text-slate-300 hover:text-amber-400 transition">Our Menu</a>
-                    <a href="#catering" class="text-slate-300 hover:text-amber-400 transition">Catering</a>
-                    <a href="#story" class="text-slate-300 hover:text-amber-400 transition">Our Story</a>
-                    <a href="#contact" class="text-slate-300 hover:text-amber-400 transition">Contact</a>
+    <!-- Header / Nav -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-header border-b border-slate-200/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-utensils text-lg"></i>
                 </div>
-
-                <!-- Action Button -->
-                <div class="hidden md:flex items-center gap-4">
-                    <a id="navWhatsappBtn" href="#" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-5 py-2.5 rounded-full shadow-lg shadow-emerald-600/20 transition-all hover:scale-105 active:scale-95 text-sm">
-                        <i class="fa-brands fa-whatsapp text-lg">active</i> Order via WhatsApp
-                    </a>
+                <div class="flex flex-col">
+                    <span class="font-serif text-2xl font-bold tracking-tight text-slate-900 leading-none">A&D <span class="text-brand-600">FOODS</span></span>
+                    <span class="text-[10px] font-semibold uppercase tracking-widest text-slate-500 mt-1">Authentic Sri Lankan</span>
                 </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobileMenuToggle" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
-                    <i class="fa-solid fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Dropdown Menu -->
-        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 bg-slate-900/95 px-4 pt-4 pb-6 space-y-3">
-            <a href="#home" class="block py-2 text-amber-400 font-medium">Home</a>
-            <a href="#menu" class="block py-2 text-slate-300 hover:text-amber-400 font-medium">Our Menu</a>
-            <a href="#catering" class="block py-2 text-slate-300 hover:text-amber-400 font-medium">Catering</a>
-            <a href="#story" class="block py-2 text-slate-300 hover:text-amber-400 font-medium">Our Story</a>
-            <a href="#contact" class="block py-2 text-slate-300 hover:text-amber-400 font-medium">Contact</a>
-            <a id="mobileWhatsappBtn" href="#" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-600 text-white font-medium py-3 rounded-xl shadow-md mt-4">
-                <i class="fa-brands fa-whatsapp text-lg"></i> Order via WhatsApp
             </a>
+
+            <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
+                <a href="#home" class="hover:text-brand-600 transition-colors">Home</a>
+                <a href="#menu" class="hover:text-brand-600 transition-colors">Menu</a>
+                <a href="#catering" class="hover:text-brand-600 transition-colors">Special Catering</a>
+                <a href="#story" class="hover:text-brand-600 transition-colors">Our Story</a>
+                <a href="#contact" class="hover:text-brand-600 transition-colors">Contact Us</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center gap-3">
+                <button onclick="openAdminModal()" class="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors text-xs font-semibold flex items-center gap-1.5" title="Admin Login">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>Admin</span>
+                </button>
+                <a id="navWhatsappBtn" href="#" target="_blank" rel="noopener" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-md shadow-emerald-600/20 hover:shadow-lg transition-all flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    Order via WhatsApp
+                </a>
+            </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-        <!-- Background Glow Effects -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-600/20 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-spice-600/15 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                
-                <!-- Left Content -->
-                <div class="space-y-6 text-center md:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs sm:text-sm font-semibold tracking-wide uppercase">
-                        <i class="fa-solid fa-fire text-spice-500"></i> 100% Authentic Homemade Recipes
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 hero-pattern relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-800 text-xs font-bold tracking-wide uppercase">
+                        <i class="fa-solid fa-pepper-hot text-spicy-500"></i>
+                        100% Fresh & Authentic Ingredients
                     </div>
-                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                        Authentic <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-brand-500 to-spice-500">Sri Lankan</span> Flavors, Made Fresh Daily!
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-[1.15]">
+                        Authentic Sri Lankan Flavors, <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-amber-600">Made Fresh Daily!</span>
                     </h1>
-                    <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto md:mx-0 font-light leading-relaxed">
-                        Experience rich spices, fragrant coconut, and time-honored traditional recipes prepared with love. From hot string hoppers to rich Kiribath and mouthwatering rice & curry.
+                    <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Taste the true comforting flavors of home-cooked Idiyappam, Kiribath, Hot Roti, Lawariya, and custom Rice & Curry catered just for you.
                     </p>
-
-                    <!-- Call to Action Buttons -->
-                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 pt-2">
-                        <a href="#menu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 to-amber-500 hover:from-brand-500 hover:to-amber-400 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg shadow-brand-600/25 transition-all hover:scale-105 active:scale-95">
-                            <i class="fa-solid fa-utensils"></i> Explore Menu
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#menu" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold text-center shadow-lg shadow-brand-600/25 transition-all flex items-center justify-center gap-2">
+                            Explore Menu
+                            <i class="fa-solid fa-arrow-right text-sm"></i>
                         </a>
-                        <a id="heroWhatsappBtn" href="#" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-900 border border-slate-700 hover:border-emerald-500 text-white font-medium px-8 py-4 rounded-xl hover:text-emerald-400 transition-all hover:scale-105">
-                            <i class="fa-brands fa-whatsapp text-emerald-500 text-xl"></i> Direct Order
+                        <a href="#catering" class="w-full sm:w-auto bg-white border border-slate-300 hover:border-brand-500 text-slate-700 hover:text-brand-600 px-8 py-4 rounded-xl font-bold text-center shadow-sm hover:shadow transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calendar-check text-brand-600"></i>
+                            Place Custom Order
                         </a>
                     </div>
-
-                    <!-- Highlights Info -->
-                    <div class="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center md:text-left">
-                        <div>
-                            <span class="block text-2xl font-bold text-amber-400 font-serif">Fresh</span>
-                            <span class="text-xs text-slate-400">Ingredients Daily</span>
-                        </div>
-                        <div>
-                            <span class="block text-2xl font-bold text-amber-400 font-serif">Custom</span>
-                            <span class="text-xs text-slate-400">Spice Levels</span>
-                        </div>
-                        <div>
-                            <span class="block text-2xl font-bold text-amber-400 font-serif">Quick</span>
-                            <span class="text-xs text-slate-400">WhatsApp Delivery</span>
-                        </div>
-                    </div>
                 </div>
-
-                <!-- Right Featured Hero Image Display -->
-                <div class="relative">
-                    <div class="relative rounded-3xl overflow-hidden border-2 border-slate-800 shadow-2xl bg-slate-900">
-                        <img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=1000&q=80" alt="Sri Lankan Feast" class="w-full h-[380px] sm:h-[460px] object-cover hover:scale-105 transition duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                        
-                        <!-- Floating Badge -->
-                        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl glass-nav border border-slate-700/80 flex items-center justify-between">
-                            <div>
-                                <span class="text-xs text-brand-400 font-semibold uppercase tracking-wider block">Today's Special</span>
-                                <h3 class="text-white font-serif font-bold text-lg">Authentic Sri Lankan Feast</h3>
-                            </div>
-                            <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold px-3 py-1.5 rounded-lg">
-                                Freshly Cooked
-                            </span>
+                <div class="lg:col-span-5">
+                    <div class="relative max-w-md mx-auto lg:max-w-none">
+                        <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Authentic Sri Lankan Spread" class="w-full h-full object-cover">
                         </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- MENU SECTION -->
-    <section id="menu" class="py-20 bg-slate-900/60 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Section Title -->
-            <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
-                <span class="text-brand-500 text-sm font-semibold tracking-widest uppercase">Taste The Tradition</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Our Signature Menu</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-brand-500 to-spice-500 mx-auto rounded-full"></div>
-            </div>
-
-            <!-- Category Filter Buttons -->
-            <div id="categoryFilters" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
-                <!-- Filters rendered dynamically -->
-            </div>
-
-            <!-- Menu Grid -->
-            <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Menu Cards will be injected dynamically from LocalStorage/JS -->
-            </div>
-
-            <!-- Empty State Message -->
-            <div id="emptyMenuMsg" class="hidden text-center py-16">
-                <i class="fa-solid fa-utensils text-5xl text-slate-700 mb-4 block"></i>
-                <p class="text-slate-400 text-lg">No menu items found in this category.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- CATERING & SPECIAL EVENTS SECTION -->
-    <section id="catering" class="py-20 bg-slate-950 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-to-br from-slate-900 to-slate-900/80 border border-slate-800 rounded-3xl p-8 sm:p-12 relative overflow-hidden">
-                <div class="absolute right-0 bottom-0 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                <div class="grid lg:grid-cols-2 gap-10 items-center">
-                    <div class="space-y-6">
-                        <span class="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold uppercase tracking-wider">
-                            Special Functions & Events
-                        </span>
-                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
-                            Planning a Family Gathering or Office Party?
-                        </h2>
-                        <p class="text-slate-400 leading-relaxed font-light">
-                            We provide full Sri Lankan catering services tailored for birthdays, office lunches, pirith ceremonies, and family get-togethers. Customized spice levels, warm food delivery, and special menu sets available upon request!
-                        </p>
-                        <ul class="space-y-3 text-slate-300 text-sm">
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-circle-check text-brand-500"></i> String Hopper & Kotta Roti Live Counters
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-circle-check text-brand-500"></i> Customized Rice & Curry Buffet Packages
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-circle-check text-brand-500"></i> Traditional Sweet & Savory Snack Trays
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Catering Inquiry Box -->
-                    <div class="bg-slate-950/80 border border-slate-800 p-6 sm:p-8 rounded-2xl space-y-4">
-                        <h3 class="text-xl font-serif font-bold text-white mb-2">Request Catering Quote</h3>
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Your Name</label>
-                            <input type="text" id="catName" placeholder="e.g. Nimal Perera" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Event Type & Expected Guests</label>
-                            <input type="text" id="catDetails" placeholder="e.g. Birthday Party - 25 Guests" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Event Date</label>
-                            <input type="date" id="catDate" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500">
-                        </div>
-                        <button onclick="sendCateringInquiry()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-lg"></i> Send Catering Inquiry
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- OUR STORY SECTION -->
-    <section id="story" class="py-20 bg-slate-900/40 border-y border-slate-800/80">
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80" alt="Sri Lankan Spices" class="rounded-2xl border border-slate-800 h-64 w-full object-cover">
-                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Kiribath Preparation" class="rounded-2xl border border-slate-800 h-64 w-full object-cover mt-8">
-                </div>
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">Our Delicious Offerings</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">Explore Our Authentic Menu</h2>
+                <p class="text-slate-600 text-sm sm:text-base">Handcrafted with traditional spices, rich coconut milk, and love. Order directly via WhatsApp for quick delivery or pickup.</p>
+            </div>
+
+            <div id="menuContainer" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Menu Items loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Catering Section -->
+    <section id="catering" class="py-20 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6">
-                    <span class="text-brand-500 text-sm font-semibold tracking-widest uppercase">Our Heritage</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
-                        Preserving authentic home-style flavors with every meal.
-                    </h2>
-                    <p class="text-slate-400 leading-relaxed font-light">
-                        At <strong class="text-white">A&D FOODS</strong>, food is more than just a meal—it’s a celebration of Sri Lankan culture. Every batch of curry powder is custom-ground, and every string hopper is freshly pressed to bring you the genuine comfort of home cooking.
-                    </p>
-                    <div class="flex items-center gap-6 pt-2">
-                        <div class="border-l-2 border-brand-500 pl-4">
-                            <h4 class="text-white font-bold text-lg">100% Homemade</h4>
-                            <p class="text-slate-500 text-xs">No artificial colors or preservatives</p>
-                        </div>
-                        <div class="border-l-2 border-brand-500 pl-4">
-                            <h4 class="text-white font-bold text-lg">Fresh Ingredients</h4>
-                            <p class="text-slate-500 text-xs">Sourced daily from local growers</p>
-                        </div>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-brand-400 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-utensils"></i>
+                        Catering & Custom Orders
                     </div>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold leading-tight">Planning a Function or Group Meal?</h2>
+                    <p class="text-slate-300 leading-relaxed">Whether it's a family get-together, birthday party, office meeting, or religious ceremony, A&D FOODS prepares customized Sri Lankan feasts, yellow rice packs, and bulk string hopper spreads tailored exactly to your guest count.</p>
+                    <a id="cateringWhatsappBtn" href="#" target="_blank" class="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        Request Custom Menu via WhatsApp
+                    </a>
+                </div>
+                <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
+                    <img src="https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=800&q=80" alt="Catering" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-20 bg-slate-950">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
-                <span class="text-brand-500 text-sm font-semibold tracking-widest uppercase">Get In Touch</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Contact & Quick Orders</h2>
-                <p class="text-slate-400 text-sm">Have a custom order or question? Reach out to us directly!</p>
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+                <span class="font-serif text-2xl font-bold text-white">A&D <span class="text-brand-500">FOODS</span></span>
+                <p class="text-xs text-slate-500 mt-1">© 2026 A&D FOODS. All rights reserved.</p>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Phone Box -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl text-center space-y-3">
-                    <div class="w-12 h-12 rounded-full bg-brand-500/10 text-brand-400 flex items-center justify-center mx-auto text-xl">
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
-                    <h3 class="text-white font-bold text-lg">Direct Call / WhatsApp</h3>
-                    <p id="displayPhoneNumber" class="text-amber-400 font-mono font-semibold">+94 77 123 4567</p>
-                    <p class="text-slate-500 text-xs">Available daily 7:00 AM - 9:00 PM</p>
-                </div>
-
-                <!-- WhatsApp Quick Message Box -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl text-center space-y-3">
-                    <div class="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto text-xl">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </div>
-                    <h3 class="text-white font-bold text-lg">Instant Order</h3>
-                    <p class="text-slate-400 text-xs">Click below to start a chat directly on WhatsApp.</p>
-                    <a id="contactWhatsappBtn" href="#" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs px-5 py-2.5 rounded-xl transition">
-                        Open WhatsApp Chat
-                    </a>
-                </div>
-
-                <!-- Opening Hours -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl text-center space-y-3">
-                    <div class="w-12 h-12 rounded-full bg-spice-500/10 text-spice-400 flex items-center justify-center mx-auto text-xl">
-                        <i class="fa-solid fa-clock"></i>
-                    </div>
-                    <h3 class="text-white font-bold text-lg">Opening Hours</h3>
-                    <p class="text-slate-300 text-xs">Mon - Sun: 7:00 AM - 9:30 PM</p>
-                    <span class="inline-block px-2.5 py-1 bg-emerald-500/10 text-emerald-400 text-[11px] rounded-full border border-emerald-500/20 font-medium">Open Today</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 text-slate-400 text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
-                
-                <!-- Brand Info -->
-                <div class="space-y-4 md:col-span-1">
-                    <a href="#home" class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-600 to-amber-400 p-0.5">
-                            <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center">
-                                <span class="font-serif font-bold text-amber-400">A&D</span>
-                            </div>
-                        </div>
-                        <span class="font-serif font-bold text-lg text-white">A&D FOODS</span>
-                    </a>
-                    <p class="text-xs text-slate-500 leading-relaxed">
-                        Authentic Sri Lankan Cuisine prepared with fresh, locally sourced ingredients and traditional spices.
-                    </p>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-white font-bold text-sm mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#home" class="hover:text-amber-400 transition">Home</a></li>
-                        <li><a href="#menu" class="hover:text-amber-400 transition">Our Menu</a></li>
-                        <li><a href="#catering" class="hover:text-amber-400 transition">Catering Services</a></li>
-                        <li><a href="#story" class="hover:text-amber-400 transition">Our Story</a></li>
-                    </ul>
-                </div>
-
-                <!-- Specialties -->
-                <div>
-                    <h4 class="text-white font-bold text-sm mb-4">Popular Specialties</h4>
-                    <ul class="space-y-2 text-xs text-slate-500">
-                        <li>Fresh String Hoppers Set</li>
-                        <li>Special Milk Rice (Kiribath)</li>
-                        <li>Fresh Hot Coconut Roti</li>
-                        <li>Sweet Lawariya</li>
-                        <li>Sri Lankan Rice & Curry</li>
-                    </ul>
-                </div>
-
-                <!-- Admin Access & Socials -->
-                <div class="space-y-4">
-                    <h4 class="text-white font-bold text-sm mb-4">Site Administration</h4>
-                    <p class="text-xs text-slate-500">Owner access to change menu, prices & phone numbers:</p>
-                    <button onclick="openAdminModal()" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 border border-slate-700 hover:border-brand-500 text-amber-400 rounded-xl text-xs font-medium transition">
-                        <i class="fa-solid fa-lock"></i> Admin Login / Dashboard
-                    </button>
-                </div>
-
-            </div>
-
-            <!-- Bottom Credits -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-                <p>&copy; <span id="currentYear"></span> A&D FOODS. All Rights Reserved.</p>
-                <p class="flex items-center gap-1">
-                    Made with <i class="fa-solid fa-heart text-spice-500"></i> for Sri Lankan Food Lovers.
-                </p>
-            </div>
+            <button onclick="openAdminModal()" class="text-xs text-slate-500 hover:text-brand-400 underline transition-colors">
+                Admin Access
+            </button>
         </div>
     </footer>
 
-
-    <!-- ==================== ADMIN LOGIN MODAL ==================== -->
-    <div id="adminAuthModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 sm:p-8 space-y-6 shadow-2xl relative">
-            <button onclick="closeAdminAuthModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white">
-                <i class="fa-solid fa-xmark text-xl"></i>
+    <!-- Admin Authentication Modal -->
+    <div id="adminAuthModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 text-white rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-brand-500"></i>
+                    Admin Authentication
+                </h3>
+                <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Admin Password</label>
+                <input type="password" id="adminPassInput" placeholder="Enter password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500">
+                <p id="authError" class="text-rose-500 text-xs mt-2 hidden">Incorrect password!</p>
+            </div>
+            <button onclick="authenticateAdmin()" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-3.5 rounded-xl transition-all">
+                Unlock Dashboard
             </button>
+        </div>
+    </div>
 
-            <div class="text-center space-y-2">
-                <div class="w-12 h-12 rounded-full bg-brand-500/10 text-brand-400 flex items-center justify-center mx-auto text-xl">
-                    <i class="fa-solid fa-user-shield"></i>
+    <!-- Admin Panel Modal -->
+    <div id="adminPanelModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 overflow-y-auto p-4 sm:p-6 hidden">
+        <div class="max-w-4xl mx-auto bg-slate-900 border border-slate-800 text-white rounded-3xl p-6 sm:p-8 my-8 shadow-2xl space-y-8">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-2xl font-bold font-serif text-brand-400">A&D FOODS Admin Dashboard</h2>
+                    <p class="text-xs text-slate-400 mt-1">Manage Menu Items, Prices & Contact Settings</p>
                 </div>
-                <h3 class="text-xl font-serif font-bold text-white">Admin Authentication</h3>
-                <p class="text-xs text-slate-400">Enter your passcode to manage A&D FOODS menu and settings.</p>
+                <button onclick="closeAdminPanel()" class="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-xl text-sm font-semibold transition-colors">
+                    Close Panel
+                </button>
             </div>
 
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Admin Password</label>
-                    <input type="password" id="adminPasswordInput" placeholder="Default: admin123" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-500">
-                    <p id="adminAuthError" class="text-spice-500 text-xs mt-1.5 hidden">Incorrect password! Default is admin123</p>
+            <!-- Global WhatsApp Settings -->
+            <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 space-y-4">
+                <h3 class="text-sm font-bold text-brand-400 uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                    Global WhatsApp Number
+                </h3>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input type="text" id="phoneSettingInput" placeholder="e.g. 94771234567" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-brand-500 text-sm">
+                    <button onclick="savePhoneSetting()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2.5 rounded-xl font-semibold text-sm transition-all">
+                        Save Number
+                    </button>
                 </div>
+            </div>
 
-                <button onclick="authenticateAdmin()" class="w-full bg-gradient-to-r from-brand-600 to-amber-500 text-slate-950 font-bold py-3 rounded-xl shadow-lg transition">
-                    Unlock Dashboard
-                </button>
+            <!-- Menu Management -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold">Manage Menu Items</h3>
+                    <button onclick="openEditItemModal()" class="bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-xl font-semibold text-xs flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> Add New Item
+                    </button>
+                </div>
+                <div id="adminMenuList" class="space-y-3">
+                    <!-- Dynamic List -->
+                </div>
             </div>
         </div>
     </div>
 
-
-    <!-- ==================== ADMIN DASHBOARD MODAL ==================== -->
-    <div id="adminDashboardModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-lg z-50 hidden overflow-y-auto p-4 sm:p-6">
-        <div class="max-w-5xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl my-8 overflow-hidden">
-            
-            <!-- Dashboard Top Header -->
-            <div class="bg-slate-950 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center">
-                        <i class="fa-solid fa-sliders"></i>
+    <!-- Edit/Add Item Modal -->
+    <div id="editItemModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 text-white rounded-2xl p-6 max-w-lg w-full space-y-4">
+            <h3 id="editModalTitle" class="text-xl font-bold">Edit Item</h3>
+            <input type="hidden" id="editItemId">
+            <div class="space-y-3 text-sm">
+                <div>
+                    <label class="block text-slate-400 text-xs mb-1">Title</label>
+                    <input type="text" id="editTitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-slate-400 text-xs mb-1">Price</label>
+                        <input type="text" id="editPrice" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white">
                     </div>
                     <div>
-                        <h3 class="text-white font-bold font-serif text-lg">A&D FOODS - Control Panel</h3>
-                        <p class="text-slate-500 text-xs">Manage menu items, prices & contact numbers</p>
+                        <label class="block text-slate-400 text-xs mb-1">Category</label>
+                        <input type="text" id="editCategory" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white">
                     </div>
                 </div>
-                <button onclick="closeAdminDashboard()" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-medium transition">
-                    <i class="fa-solid fa-xmark mr-1"></i> Exit Dashboard
-                </button>
+                <div>
+                    <label class="block text-slate-400 text-xs mb-1">Description</label>
+                    <textarea id="editDescription" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white"></textarea>
+                </div>
+                <div>
+                    <label class="block text-slate-400 text-xs mb-1">Image URL</label>
+                    <input type="text" id="editImage" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white">
+                </div>
             </div>
-
-            <div class="p-6 sm:p-8 space-y-8">
-
-                <!-- 1. Phone / WhatsApp Number Manager -->
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h4 class="text-white font-bold text-base flex items-center gap-2">
-                                <i class="fa-brands fa-whatsapp text-emerald-500"></i> WhatsApp & Order Phone Number
-                            </h4>
-                            <p class="text-slate-400 text-xs mt-0.5">Changing this updates all "Order via WhatsApp" links across the entire website immediately.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="text" id="adminPhoneInput" placeholder="e.g. 94771234567 (With country code, no +)" class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500">
-                        <button onclick="saveAdminPhoneNumber()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition">
-                            Save Phone Number
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 2. Add / Edit Menu Item Form -->
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h4 id="itemFormTitle" class="text-white font-bold text-base flex items-center gap-2">
-                            <i class="fa-solid fa-plus-circle text-brand-500"></i> Add New Menu Item
-                        </h4>
-                        <button id="cancelEditBtn" onclick="resetItemForm()" class="hidden text-xs text-slate-400 hover:text-white underline">
-                            Cancel Edit
-                        </button>
-                    </div>
-
-                    <input type="hidden" id="editItemId" value="">
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div>
-                            <label class="block text-xs text-slate-400 mb-1">Item Title / Name *</label>
-                            <input type="text" id="itemTitle" placeholder="e.g. String Hoppers Set" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs text-slate-400 mb-1">Price (e.g. LKR 650) *</label>
-                            <input type="text" id="itemPrice" placeholder="e.g. LKR 650" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs text-slate-400 mb-1">Category *</label>
-                            <select id="itemCategory" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
-                                <option value="Breakfast / Dinner">Breakfast / Dinner</option>
-                                <option value="Traditional">Traditional</option>
-                                <option value="Snacks">Snacks</option>
-                                <option value="Sweets">Sweets</option>
-                                <option value="Meals">Meals</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs text-slate-400 mb-1">Tag / Badge (Optional)</label>
-                            <input type="text" id="itemTag" placeholder="e.g. Fresh & Hot, Best Seller" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label class="block text-xs text-slate-400 mb-1">Image URL (Direct web link) *</label>
-                            <input type="text" id="itemImage" placeholder="https://images.unsplash.com/..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
-                        </div>
-                        <div class="sm:col-span-2 lg:col-span-3">
-                            <label class="block text-xs text-slate-400 mb-1">Item Description</label>
-                            <textarea id="itemDesc" rows="2" placeholder="Briefly describe ingredients, curries included..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-brand-500"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-end gap-3 pt-2">
-                        <button onclick="saveMenuItem()" class="bg-gradient-to-r from-brand-600 to-amber-500 text-slate-950 font-bold px-6 py-2.5 rounded-xl text-sm transition shadow-lg">
-                            <i class="fa-solid fa-check mr-1"></i> Save Menu Item
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 3. Existing Menu Items List -->
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h4 class="text-white font-bold text-base flex items-center gap-2">
-                            <i class="fa-solid fa-list text-amber-400"></i> Existing Menu Items (<span id="menuCount">0</span>)
-                        </h4>
-                        <button onclick="resetMenuToDefault()" class="text-xs text-spice-400 hover:text-spice-500 underline">
-                            Reset to Default Menu
-                        </button>
-                    </div>
-
-                    <div id="adminMenuList" class="space-y-3">
-                        <!-- Rendered dynamically -->
-                    </div>
-                </div>
-
+            <div class="flex justify-end gap-3 pt-2">
+                <button onclick="closeEditItemModal()" class="bg-slate-800 px-4 py-2 rounded-xl text-xs font-semibold">Cancel</button>
+                <button onclick="saveMenuItem()" class="bg-brand-600 hover:bg-brand-500 px-5 py-2 rounded-xl text-xs font-semibold">Save Item</button>
             </div>
         </div>
     </div>
 
-    <!-- NOTIFICATION TOAST -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 border border-brand-500/40 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
-        <span id="toastMsg" class="text-sm font-medium">Notification message</span>
-    </div>
-
-
-    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
-        // DEFAULT MENU ITEMS (Used on first load or reset)
+        // Initial Default Data
         const defaultMenuItems = [
-            {
-                id: "1",
-                title: "Idiyappam (String Hoppers) Set",
-                price: "LKR 650",
-                category: "Breakfast / Dinner",
-                tag: "Fresh & Hot",
-                description: "Served steaming hot with spicy Lunu Miris, creamy Kiri Hodi, and your choice of delicious Fish or Chicken Curry.",
-                image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: "2",
-                title: "Special Kiribath (Milk Rice)",
-                price: "LKR 500",
-                category: "Traditional",
-                tag: "Best Seller",
-                description: "Rich, creamy traditional milk rice prepared with thick coconut milk, served alongside authentic Seeni Sambol or spicy Lunu Miris.",
-                image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: "3",
-                title: "Freshly Made Hot Roti",
-                price: "LKR 400",
-                category: "Snacks",
-                tag: "Crispy & Hot",
-                description: "Crispy on the outside, soft on the inside Pol Roti prepared with fresh grated coconut. Served with fiery Katta Sambol.",
-                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: "4",
-                title: "Delicious Sweet Lawariya",
-                price: "LKR 350",
-                category: "Sweets",
-                tag: "Sweet & Fragrant",
-                description: "Warm string hoppers carefully stuffed with caramelized sweet coconut filling (pani pol) and aromatic cardamoms.",
-                image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: "5",
-                title: "Authentic Rice & Curry Plate",
-                price: "LKR 850",
-                category: "Meals",
-                tag: "Full Meal",
-                description: "Red or White rice accompanied by 4 authentic Sri Lankan vegetable curries, papadum, fried chillies, and choice of Chicken/Fish/Egg.",
-                image: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80"
-            }
+            { id: 1, title: 'Idiyappam (String Hoppers) Set', price: 'LKR 650', category: 'Breakfast / Dinner', tag: 'Fresh & Hot', description: 'Served steaming hot with spicy Lunu Miris, creamy Kiri Hodi, and your choice of delicious Fish or Chicken Curry.', image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80' },
+            { id: 2, title: 'Special Kiribath (Milk Rice)', price: 'LKR 500', category: 'Traditional', tag: 'Best Seller', description: 'Rich, creamy traditional milk rice prepared with thick coconut milk, served alongside authentic Seeni Sambol or spicy Lunu Miris.', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80' },
+            { id: 3, title: 'Freshly Made Hot Roti', price: 'LKR 400', category: 'Snack / Meal', tag: 'Crispy & Hot', description: 'Crispy on the outside, soft on the inside Pol Roti prepared with fresh grated coconut. Served with fiery Katta Sambol.', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80' },
+            { id: 4, title: 'Delicious Sweet Lawariya', price: 'LKR 350', category: 'Sweet Treat', tag: 'Sweet & Fragrant', description: 'Warm string hoppers carefully stuffed with caramelized sweet coconut filling (pani pol) and aromatic cardamoms.', image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80' },
+            { id: 5, title: 'Authentic Rice & Curry Plate', price: 'LKR 850', category: 'Lunch & Dinner', tag: 'Full Meal', description: 'Red or White rice accompanied by 4 authentic Sri Lankan vegetable curries, papadum, fried chillies, and choice of Chicken/Fish/Egg.', image: 'https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80' }
         ];
 
-        // GLOBAL STATE
-        let menuItems = [];
-        let activeCategory = "All";
-        let storePhone = "94771234567"; // Default Phone Number
-
-        // INITIALIZATION
-        window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-            loadStoredData();
-            setupMobileMenu();
-            renderCategoryFilters();
-            renderPublicMenu();
-            updateWhatsAppLinks();
-        });
-
-        // LOAD DATA FROM LOCAL STORAGE
-        function loadStoredData() {
-            const savedMenu = localStorage.getItem('ad_foods_menu');
-            if (savedMenu) {
-                menuItems = JSON.parse(savedMenu);
-            } else {
-                menuItems = [...defaultMenuItems];
-                saveMenuToStorage();
-            }
-
-            const savedPhone = localStorage.getItem('ad_foods_phone');
-            if (savedPhone) {
-                storePhone = savedPhone;
-            }
-            document.getElementById('displayPhoneNumber').textContent = "+" + storePhone.replace(/(\d{2})(\d{2})(\d{3})(\d{4})/, '$1 $2 $3 $4');
-            document.getElementById('adminPhoneInput').value = storePhone;
+        function getPhone() {
+            return localStorage.getItem('ad_foods_phone') || '94771234567';
         }
 
-        function saveMenuToStorage() {
-            localStorage.setItem('ad_foods_menu', JSON.stringify(menuItems));
+        function getMenuItems() {
+            const saved = localStorage.getItem('ad_foods_menu');
+            return saved ? JSON.parse(saved) : defaultMenuItems;
         }
 
-        function savePhoneToStorage() {
-            localStorage.setItem('ad_foods_phone', storePhone);
-        }
+        function renderSite() {
+            const phone = getPhone();
+            const items = getMenuItems();
 
-        // UPDATE WHATSAPP LINKS GLOBALLY
-        function updateWhatsAppLinks() {
-            const defaultMsg = encodeURIComponent("Hello A&D FOODS, I would like to inquire about ordering food!");
-            const link = `https://wa.me/${storePhone}?text=${defaultMsg}`;
-            
-            document.getElementById('navWhatsappBtn').href = link;
-            document.getElementById('mobileWhatsappBtn').href = link;
-            document.getElementById('heroWhatsappBtn').href = link;
-            document.getElementById('contactWhatsappBtn').href = link;
-        }
+            // Update WhatsApp Links
+            const waUrl = `https://wa.me/${phone}?text=Hi%20A%26D%20FOODS,%20I%20would%20like%20to%20place%20an%20order.`;
+            document.getElementById('navWhatsappBtn').href = waUrl;
+            document.getElementById('cateringWhatsappBtn').href = waUrl;
 
-        // CATEGORY FILTERS
-        const categories = ["All", "Breakfast / Dinner", "Traditional", "Snacks", "Sweets", "Meals"];
-
-        function renderCategoryFilters() {
-            const container = document.getElementById('categoryFilters');
-            container.innerHTML = categories.map(cat => `
-                <button onclick="setCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
-                    activeCategory === cat 
-                    ? 'bg-gradient-to-r from-brand-600 to-amber-500 text-slate-950 shadow-lg shadow-brand-600/20' 
-                    : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
-                }">
-                    ${cat}
-                </button>
-            `).join('');
-        }
-
-        function setCategory(cat) {
-            activeCategory = cat;
-            renderCategoryFilters();
-            renderPublicMenu();
-        }
-
-        // RENDER PUBLIC MENU CARDS
-        function renderPublicMenu() {
-            const grid = document.getElementById('menuGrid');
-            const emptyMsg = document.getElementById('emptyMenuMsg');
-
-            const filtered = activeCategory === "All" 
-                ? menuItems 
-                : menuItems.filter(item => item.category.toLowerCase() === activeCategory.toLowerCase());
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '';
-                emptyMsg.classList.remove('hidden');
-                return;
-            }
-
-            emptyMsg.classList.add('hidden');
-            grid.innerHTML = filtered.map(item => {
-                const itemMsg = encodeURIComponent(`Hello A&D FOODS, I would like to order: ${item.title} (${item.price})`);
-                const itemWaLink = `https://wa.me/${storePhone}?text=${itemMsg}`;
-
-                return `
-                    <div class="bg-slate-900/90 border border-slate-800/80 rounded-2xl overflow-hidden food-card-shadow transition duration-300 flex flex-col justify-between group">
-                        <div>
-                            <!-- Image Container -->
-                            <div class="relative h-52 overflow-hidden bg-slate-950">
-                                <img src="${item.image}" alt="${item.title}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                                
-                                ${item.tag ? `<span class="absolute top-3 right-3 bg-brand-500/90 backdrop-blur-md text-slate-950 font-bold text-[11px] px-3 py-1 rounded-full uppercase tracking-wider shadow-md">${item.tag}</span>` : ''}
-                                <span class="absolute bottom-3 left-3 bg-slate-950/80 backdrop-blur-md text-slate-300 text-xs px-2.5 py-1 rounded-lg border border-slate-800">${item.category}</span>
-                            </div>
-
-                            <!-- Text Content -->
-                            <div class="p-6 space-y-3">
-                                <div class="flex items-start justify-between gap-2">
-                                    <h3 class="text-lg font-serif font-bold text-white group-hover:text-amber-400 transition">${item.title}</h3>
-                                    <span class="text-amber-400 font-bold text-base whitespace-nowrap">${item.price}</span>
-                                </div>
-                                <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">${item.description}</p>
-                            </div>
-                        </div>
-
-                        <!-- Order Button -->
-                        <div class="px-6 pb-6 pt-2">
-                            <a href="${itemWaLink}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600/90 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-xl text-xs transition shadow-md shadow-emerald-600/20">
-                                <i class="fa-brands fa-whatsapp text-sm"></i> Order via WhatsApp
-                            </a>
+            // Render Public Menu
+            const container = document.getElementById('menuContainer');
+            container.innerHTML = items.map(item => `
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md text-amber-400 font-extrabold px-3 py-1 rounded-full text-xs">
+                            ${item.price}
                         </div>
                     </div>
-                `;
-            }).join('');
-        }
-
-        // CATERING INQUIRY FUNCTION
-        function sendCateringInquiry() {
-            const name = document.getElementById('catName').value.trim();
-            const details = document.getElementById('catDetails').value.trim();
-            const date = document.getElementById('catDate').value;
-
-            if (!name || !details) {
-                showToast("Please enter your Name and Event details!", "error");
-                return;
-            }
-
-            const msg = encodeURIComponent(`Hello A&D FOODS, I have a Catering Inquiry!\n\nName: ${name}\nEvent: ${details}\nDate: ${date || 'Not specified'}`);
-            window.open(`https://wa.me/${storePhone}?text=${msg}`, '_blank');
-        }
-
-        // MOBILE MENU TOGGLE
-        function setupMobileMenu() {
-            const btn = document.getElementById('mobileMenuToggle');
-            const menu = document.getElementById('mobileMenu');
-            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-        }
-
-        // ==================== ADMIN PANEL LOGIC ==================== //
-
-        function openAdminModal() {
-            document.getElementById('adminAuthModal').classList.remove('hidden');
-            document.getElementById('adminPasswordInput').value = '';
-            document.getElementById('adminAuthError').classList.add('hidden');
-        }
-
-        function closeAdminAuthModal() {
-            document.getElementById('adminAuthModal').classList.add('hidden');
-        }
-
-        function authenticateAdmin() {
-            const pass = document.getElementById('adminPasswordInput').value;
-            if (pass === 'admin123' || pass === 'admin') {
-                closeAdminAuthModal();
-                openAdminDashboard();
-                showToast("Logged into Admin Dashboard successfully!");
-            } else {
-                document.getElementById('adminAuthError').classList.remove('hidden');
-            }
-        }
-
-        function openAdminDashboard() {
-            document.getElementById('adminDashboardModal').classList.remove('hidden');
-            renderAdminMenuList();
-        }
-
-        function closeAdminDashboard() {
-            document.getElementById('adminDashboardModal').classList.add('hidden');
-        }
-
-        // Save Phone Number from Admin Panel
-        function saveAdminPhoneNumber() {
-            const input = document.getElementById('adminPhoneInput').value.trim().replace(/\+/g, '').replace(/\s/g, '');
-            if (!input || input.length < 8) {
-                showToast("Please enter a valid phone number with country code (e.g. 94771234567)", "error");
-                return;
-            }
-            storePhone = input;
-            savePhoneToStorage();
-            updateWhatsAppLinks();
-            document.getElementById('displayPhoneNumber').textContent = "+" + storePhone.replace(/(\d{2})(\d{2})(\d{3})(\d{4})/, '$1 $2 $3 $4');
-            showToast("WhatsApp contact number updated globally!");
-        }
-
-        // Render Menu Items in Admin Dashboard
-        function renderAdminMenuList() {
-            const list = document.getElementById('adminMenuList');
-            document.getElementById('menuCount').textContent = menuItems.length;
-
-            list.innerHTML = menuItems.map(item => `
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div class="flex items-center gap-4 w-full sm:w-auto">
-                        <img src="${item.image}" alt="${item.title}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80'" class="w-14 h-14 rounded-lg object-cover bg-slate-950 border border-slate-800 flex-shrink-0">
+                    <div class="p-5 flex flex-col flex-1 justify-between space-y-4">
                         <div>
-                            <h5 class="text-white font-bold text-sm">${item.title}</h5>
-                            <span class="text-amber-400 font-semibold text-xs mr-2">${item.price}</span>
-                            <span class="text-slate-500 text-[11px] bg-slate-950 px-2 py-0.5 rounded border border-slate-800">${item.category}</span>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-brand-600">${item.category}</span>
+                            <h3 class="font-serif font-bold text-lg text-slate-900 mt-0.5">${item.title}</h3>
+                            <p class="text-slate-600 text-xs mt-2 leading-relaxed">${item.description}</p>
                         </div>
-                    </div>
-                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-                        <button onclick="editMenuItem('${item.id}')" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-400 rounded-lg text-xs font-medium transition">
-                            <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
-                        </button>
-                        <button onclick="deleteMenuItem('${item.id}')" class="px-3 py-1.5 bg-spice-600/20 hover:bg-spice-600 text-spice-400 hover:text-white rounded-lg text-xs font-medium transition">
-                            <i class="fa-solid fa-trash mr-1"></i> Delete
-                        </button>
+                        <a href="https://wa.me/${phone}?text=Hi%20A%26D%20FOODS,%20I%20would%20like%20to%20order%20${encodeURIComponent(item.title)}." target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Order via WhatsApp
+                        </a>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Save or Edit Menu Item
-        function saveMenuItem() {
-            const editId = document.getElementById('editItemId').value;
-            const title = document.getElementById('itemTitle').value.trim();
-            const price = document.getElementById('itemPrice').value.trim();
-            const category = document.getElementById('itemCategory').value;
-            const tag = document.getElementById('itemTag').value.trim();
-            const image = document.getElementById('itemImage').value.trim();
-            const description = document.getElementById('itemDesc').value.trim();
-
-            if (!title || !price || !image) {
-                showToast("Please fill in Title, Price, and Image URL!", "error");
-                return;
-            }
-
-            if (editId) {
-                // Update existing
-                const index = menuItems.findIndex(i => i.id === editId);
-                if (index !== -1) {
-                    menuItems[index] = { id: editId, title, price, category, tag, image, description };
-                    showToast("Menu item updated successfully!");
-                }
+        // Admin Auth
+        function openAdminModal() {
+            document.getElementById('adminAuthModal').classList.remove('hidden');
+        }
+        function closeAdminModal() {
+            document.getElementById('adminAuthModal').classList.add('hidden');
+            document.getElementById('authError').classList.add('hidden');
+        }
+        function authenticateAdmin() {
+            const pass = document.getElementById('adminPassInput').value;
+            if (pass === 'admin123') {
+                closeAdminModal();
+                openAdminPanel();
             } else {
-                // Create new
-                const newItem = {
-                    id: Date.now().toString(),
-                    title,
-                    price,
-                    category,
-                    tag,
-                    image,
-                    description
-                };
-                menuItems.unshift(newItem);
-                showToast("New menu item added!");
+                document.getElementById('authError').classList.remove('hidden');
+            }
+        }
+
+        // Admin Panel Logic
+        function openAdminPanel() {
+            document.getElementById('phoneSettingInput').value = getPhone();
+            renderAdminMenuList();
+            document.getElementById('adminPanelModal').classList.remove('hidden');
+        }
+        function closeAdminPanel() {
+            document.getElementById('adminPanelModal').classList.add('hidden');
+        }
+
+        function savePhoneSetting() {
+            const val = document.getElementById('phoneSettingInput').value.trim();
+            if (val) {
+                localStorage.setItem('ad_foods_phone', val);
+                renderSite();
+                alert('WhatsApp number updated successfully!');
+            }
+        }
+
+        function renderAdminMenuList() {
+            const items = getMenuItems();
+            const list = document.getElementById('adminMenuList');
+            list.innerHTML = items.map(item => `
+                <div class="bg-slate-800/80 border border-slate-700 p-4 rounded-xl flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover bg-slate-700">
+                        <div>
+                            <h4 class="font-bold text-sm text-white">${item.title}</h4>
+                            <span class="text-xs text-brand-400 font-semibold">${item.price}</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="openEditItemModal(${item.id})" class="bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fa-solid fa-pen"></i> Edit</button>
+                        <button onclick="deleteMenuItem(${item.id})" class="bg-rose-600/80 hover:bg-rose-600 px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openEditItemModal(id = null) {
+            if (id) {
+                const item = getMenuItems().find(i => i.id === id);
+                document.getElementById('editModalTitle').innerText = 'Edit Item';
+                document.getElementById('editItemId').value = item.id;
+                document.getElementById('editTitle').value = item.title;
+                document.getElementById('editPrice').value = item.price;
+                document.getElementById('editCategory').value = item.category;
+                document.getElementById('editDescription').value = item.description;
+                document.getElementById('editImage').value = item.image;
+            } else {
+                document.getElementById('editModalTitle').innerText = 'Add New Item';
+                document.getElementById('editItemId').value = '';
+                document.getElementById('editTitle').value = '';
+                document.getElementById('editPrice').value = '';
+                document.getElementById('editCategory').value = '';
+                document.getElementById('editDescription').value = '';
+                document.getElementById('editImage').value = '';
+            }
+            document.getElementById('editItemModal').classList.remove('hidden');
+        }
+
+        function closeEditItemModal() {
+            document.getElementById('editItemModal').classList.add('hidden');
+        }
+
+        function saveMenuItem() {
+            const id = document.getElementById('editItemId').value;
+            let items = getMenuItems();
+
+            const newItem = {
+                id: id ? parseInt(id) : Date.now(),
+                title: document.getElementById('editTitle').value,
+                price: document.getElementById('editPrice').value,
+                category: document.getElementById('editCategory').value,
+                description: document.getElementById('editDescription').value,
+                image: document.getElementById('editImage').value
+            };
+
+            if (id) {
+                items = items.map(i => i.id === parseInt(id) ? newItem : i);
+            } else {
+                items.push(newItem);
             }
 
-            saveMenuToStorage();
-            resetItemForm();
+            localStorage.setItem('ad_foods_menu', JSON.stringify(items));
+            closeEditItemModal();
             renderAdminMenuList();
-            renderPublicMenu();
-        }
-
-        function editMenuItem(id) {
-            const item = menuItems.find(i => i.id === id);
-            if (!item) return;
-
-            document.getElementById('editItemId').value = item.id;
-            document.getElementById('itemTitle').value = item.title;
-            document.getElementById('itemPrice').value = item.price;
-            document.getElementById('itemCategory').value = item.category;
-            document.getElementById('itemTag').value = item.tag || '';
-            document.getElementById('itemImage').value = item.image;
-            document.getElementById('itemDesc').value = item.description || '';
-
-            document.getElementById('itemFormTitle').innerHTML = '<i class="fa-solid fa-pen-to-square text-amber-400"></i> Edit Menu Item';
-            document.getElementById('cancelEditBtn').classList.remove('hidden');
-        }
-
-        function resetItemForm() {
-            document.getElementById('editItemId').value = '';
-            document.getElementById('itemTitle').value = '';
-            document.getElementById('itemPrice').value = '';
-            document.getElementById('itemTag').value = '';
-            document.getElementById('itemImage').value = '';
-            document.getElementById('itemDesc').value = '';
-
-            document.getElementById('itemFormTitle').innerHTML = '<i class="fa-solid fa-plus-circle text-brand-500"></i> Add New Menu Item';
-            document.getElementById('cancelEditBtn').classList.add('hidden');
+            renderSite();
         }
 
         function deleteMenuItem(id) {
-            if (confirm("Are you sure you want to delete this item?")) {
-                menuItems = menuItems.filter(i => i.id !== id);
-                saveMenuToStorage();
+            if (confirm('Are you sure you want to delete this item?')) {
+                const items = getMenuItems().filter(i => i.id !== id);
+                localStorage.setItem('ad_foods_menu', JSON.stringify(items));
                 renderAdminMenuList();
-                renderPublicMenu();
-                showToast("Item deleted!");
+                renderSite();
             }
         }
 
-        function resetMenuToDefault() {
-            if (confirm("Reset menu back to default items? Any custom items added will be replaced.")) {
-                menuItems = [...defaultMenuItems];
-                saveMenuToStorage();
-                renderAdminMenuList();
-                renderPublicMenu();
-                showToast("Menu reset to defaults!");
-            }
-        }
-
-        // TOAST NOTIFICATION HELPERS
-        function showToast(msg, type = "success") {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMsg');
-            const toastIcon = document.getElementById('toastIcon');
-
-            toastMsg.textContent = msg;
-            if (type === "error") {
-                toastIcon.className = "fa-solid fa-circle-exclamation text-spice-500 text-lg";
-                toast.style.borderColor = "rgba(225, 29, 72, 0.4)";
-            } else {
-                toastIcon.className = "fa-solid fa-circle-check text-emerald-400 text-lg";
-                toast.style.borderColor = "rgba(245, 158, 11, 0.4)";
-            }
-
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
+        // Initialize
+        renderSite();
     </script>
 </body>
 </html>
