@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -12,6 +13,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     
+    <!-- FIREBASE COMPAT SDKs (Works everywhere without Module errors) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -66,7 +71,7 @@
             </nav>
 
             <div class="flex items-center gap-4">
-                <button onclick="openAdminModal()" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors bg-brand-card hover:bg-slate-800 px-3 py-2 rounded-lg border border-brand-border">
+                <button onclick="openAdminModal()" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors bg-brand-card hover:bg-slate-800 px-3 py-2 rounded-lg border border-brand-border cursor-pointer">
                     <i class="fa-solid fa-lock"></i>
                     <span>Admin</span>
                 </button>
@@ -142,7 +147,7 @@
                     <i class="fa-solid fa-sliders text-brand-gold"></i>
                     <span>Admin Control Panel</span>
                 </h3>
-                <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white p-2 rounded-lg">
+                <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white p-2 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
@@ -154,7 +159,7 @@
                         <input type="password" id="adminPasswordInput" placeholder="Enter Password" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold">
                         <p id="loginError" class="text-rose-500 text-xs hidden">Invalid password. Please try again.</p>
                     </div>
-                    <button onclick="loginAdmin()" class="w-full bg-brand-gold hover:bg-amber-500 text-black font-bold py-3 rounded-xl transition-all text-sm">
+                    <button onclick="loginAdmin()" class="w-full bg-brand-gold hover:bg-amber-500 text-black font-bold py-3 rounded-xl transition-all text-sm cursor-pointer">
                         Login
                     </button>
                 </div>
@@ -164,7 +169,7 @@
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">GLOBAL WHATSAPP NUMBER</label>
                         <div class="flex gap-2">
                             <input type="text" id="adminPhoneInput" placeholder="94771234567" class="flex-1 bg-brand-dark border border-brand-border rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-gold">
-                            <button onclick="savePhoneNumber()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-sm transition-all">
+                            <button onclick="savePhoneNumber()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-sm transition-all cursor-pointer">
                                 Save Number
                             </button>
                         </div>
@@ -173,7 +178,7 @@
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
                             <h4 class="font-bold text-sm text-white">Manage Menu Items</h4>
-                            <button onclick="addNewMenuItem()" class="bg-brand-orange hover:bg-amber-600 text-white text-xs font-bold px-3 py-2 rounded-lg transition-all flex items-center gap-1">
+                            <button onclick="addNewMenuItem()" class="bg-brand-orange hover:bg-amber-600 text-white text-xs font-bold px-3 py-2 rounded-lg transition-all flex items-center gap-1 cursor-pointer">
                                 <i class="fa-solid fa-plus"></i>
                                 <span>Add New Item</span>
                             </button>
@@ -185,11 +190,8 @@
         </div>
     </div>
 
-    <!-- FIREBASE SDKs & LOGIC -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
+    <!-- SCRIPT LOGIC -->
+    <script>
         const PERMANENT_ADMIN_PASSWORD = "SarojaFoods@123#";
         const fallbackImage = "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80";
         const defaultPhoneNumber = "94771234567";
@@ -201,194 +203,3 @@
             projectId: "ad-foods-5fac8",
             storageBucket: "ad-foods-5fac8.firebasestorage.app",
             messagingSenderId: "874850210159",
-            appId: "1:874850210159:web:e18640c67bda3641d2d89a",
-            measurementId: "G-QEJ8KB1JN1"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        let currentMenu = [];
-        let currentPhone = defaultPhoneNumber;
-
-        const defaultMenuItems = [
-            {
-                id: 1,
-                title: "Idiyappam (String Hoppers) Set",
-                price: "650",
-                description: "15 String hoppers served with spicy Kiri Hodi, Pol Sambol, and Dhal Curry.",
-                image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: 2,
-                title: "Special Kiribath (Milk Rice)",
-                price: "500",
-                description: "Creamy Kiribath served with traditional spicy Lunu Miris and Seeni Sambol.",
-                image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: 3,
-                title: "Freshly Made Hot Roti",
-                price: "400",
-                description: "4 Hot coconut rotis served with spicy kattasambol and dhal curry.",
-                image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: 4,
-                title: "Delicious Sweet Lawariya",
-                price: "350",
-                description: "Sweet stuffed string hopper rolls with caramelised grated coconut filling (5 Pcs).",
-                image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80"
-            }
-        ];
-
-        // Realtime Sync Listener for Menu
-        const menuRef = ref(db, 'menu');
-        onValue(menuRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                currentMenu = data;
-            } else {
-                currentMenu = defaultMenuItems;
-                set(menuRef, defaultMenuItems);
-            }
-            renderMenu();
-            renderAdminMenuList();
-        });
-
-        // Realtime Sync Listener for Phone Number
-        const phoneRef = ref(db, 'phone');
-        onValue(phoneRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                currentPhone = data;
-            } else {
-                currentPhone = defaultPhoneNumber;
-                set(phoneRef, defaultPhoneNumber);
-            }
-            renderMenu();
-        });
-
-        function renderMenu() {
-            const menuGrid = document.getElementById('menuGrid');
-            if (!menuGrid) return;
-
-            menuGrid.innerHTML = currentMenu.map(item => `
-                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden hover:border-slate-600 transition-all group flex flex-col justify-between">
-                    <div>
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="${(item.image || '').trim()}" alt="${item.title}" onerror="this.src='${fallbackImage}'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        </div>
-                        <div class="p-6 space-y-2">
-                            <div class="flex justify-between items-start gap-2">
-                                <h3 class="font-bold text-lg text-white font-serif">${item.title}</h3>
-                                <span class="bg-brand-orange/10 text-brand-orange font-bold text-xs px-2.5 py-1 rounded-lg border border-brand-orange/20 whitespace-nowrap">LKR ${item.price}</span>
-                            </div>
-                            <p class="text-slate-400 text-xs leading-relaxed">${item.description}</p>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0">
-                        <a href="https://wa.me/${currentPhone}?text=${encodeURIComponent('Hello A&D Foods, I would like to order: ' + item.title)}" target="_blank" class="w-full bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white border border-brand-border hover:border-emerald-500 font-semibold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-sm"></i>
-                            <span>Order via WhatsApp</span>
-                        </a>
-                    </div>
-                </div>
-            `).join('');
-
-            document.getElementById('navWhatsappBtn').href = `https://wa.me/${currentPhone}?text=${encodeURIComponent('Hello A&D Foods, I would like to make an inquiry.')}`;
-            document.getElementById('heroCustomOrderBtn').href = `https://wa.me/${currentPhone}?text=${encodeURIComponent('Hello A&D Foods, I would like to discuss a custom order.')}`;
-        }
-
-        function renderAdminMenuList() {
-            const list = document.getElementById('adminMenuList');
-            if (!list) return;
-
-            list.innerHTML = currentMenu.map(item => `
-                <div class="bg-brand-dark p-3 rounded-xl border border-brand-border flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3">
-                        <img src="${(item.image || '').trim()}" onerror="this.src='${fallbackImage}'" class="w-10 h-10 rounded-lg object-cover">
-                        <div>
-                            <p class="text-xs font-bold text-white">${item.title}</p>
-                            <p class="text-[10px] text-slate-400">LKR ${item.price}</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="editMenuItem(${item.id})" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1.5 rounded-lg border border-brand-border">
-                            <i class="fa-solid fa-pen"></i> Edit
-                        </button>
-                        <button onclick="deleteMenuItem(${item.id})" class="text-xs bg-rose-500/20 hover:bg-rose-500 text-rose-400 hover:text-white px-2.5 py-1.5 rounded-lg border border-rose-500/30">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Global functions connected to Window
-        window.openAdminModal = function() {
-            document.getElementById('adminModal').classList.remove('hidden');
-            document.getElementById('adminLoginView').classList.remove('hidden');
-            document.getElementById('adminControlsView').classList.add('hidden');
-            document.getElementById('adminPasswordInput').value = '';
-            document.getElementById('loginError').classList.add('hidden');
-        };
-
-        window.closeAdminModal = function() {
-            document.getElementById('adminModal').classList.add('hidden');
-        };
-
-        window.loginAdmin = function() {
-            const pass = document.getElementById('adminPasswordInput').value;
-            if (pass === PERMANENT_ADMIN_PASSWORD) {
-                document.getElementById('adminLoginView').classList.add('hidden');
-                document.getElementById('adminControlsView').classList.remove('hidden');
-                document.getElementById('adminPhoneInput').value = currentPhone;
-                renderAdminMenuList();
-            } else {
-                document.getElementById('loginError').classList.remove('hidden');
-            }
-        };
-
-        window.savePhoneNumber = function() {
-            const newPhone = document.getElementById('adminPhoneInput').value.trim();
-            if (newPhone) {
-                set(ref(db, 'phone'), newPhone);
-                alert('WhatsApp Number Updated Globally!');
-            }
-        };
-
-        window.editMenuItem = function(id) {
-            const item = currentMenu.find(i => i.id === id);
-            if (!item) return;
-
-            const newTitle = prompt("Edit Item Title:", item.title);
-            if (newTitle === null) return;
-            const newPrice = prompt("Edit Price (LKR):", item.price);
-            if (newPrice === null) return;
-            const newDesc = prompt("Edit Description:", item.description);
-            if (newDesc === null) return;
-            const newImage = prompt("Edit Image URL (Link):", item.image);
-            if (newImage === null) return;
-
-            const updatedMenu = currentMenu.map(i => {
-                if (i.id === id) {
-                    return { ...i, title: newTitle, price: newPrice, description: newDesc, image: newImage.trim() };
-                }
-                return i;
-            });
-
-            set(ref(db, 'menu'), updatedMenu);
-        };
-
-        window.deleteMenuItem = function(id) {
-            if (confirm("Are you sure you want to delete this item?")) {
-                const updatedMenu = currentMenu.filter(i => i.id !== id);
-                set(ref(db, 'menu'), updatedMenu);
-            }
-        };
-
-        window.addNewMenuItem = function() {
-            const title = prompt("Enter Item Title:");
-            if (!title) return;
-            const price =
