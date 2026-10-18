@@ -190,7 +190,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        const PERMANENT_ADMIN_PASSWORD = "admin123";
+        const PERMANENT_ADMIN_PASSWORD = "SarojaFoods@123#";
         const fallbackImage = "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80";
         const defaultPhoneNumber = "94771234567";
 
@@ -391,23 +391,4 @@
         window.addNewMenuItem = function() {
             const title = prompt("Enter Item Title:");
             if (!title) return;
-            const price = prompt("Enter Price (LKR):");
-            if (!price) return;
-            const description = prompt("Enter Description:");
-            if (!description) return;
-            const image = prompt("Enter Image URL (Link):") || fallbackImage;
-
-            const newItem = {
-                id: Date.now(),
-                title,
-                price,
-                description,
-                image: image.trim()
-            };
-
-            const updatedMenu = [...currentMenu, newItem];
-            set(ref(db, 'menu'), updatedMenu);
-        };
-    </script>
-</body>
-</html>
+            const price =
