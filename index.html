@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A&D FOODS | Authentic Sri Lankan Cuisine</title>
+    <script>
+    
+        const PERMANENT_ADMIN_PASSWORD = "SarojaFoods@123#";
+    </script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    const PERMANENT_ADMIN_PASSWORD = "SarojaFoods@123#";<!-- FontAwesome Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
@@ -173,19 +177,6 @@
                         </div>
                     </div>
 
-                    <!-- Change Admin Password Section -->
-                    <div class="bg-brand-dark/50 p-4 rounded-xl border border-brand-border space-y-3">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">CHANGE ADMIN PASSWORD</label>
-                        <div class="space-y-3">
-                            <input type="password" id="currentPassInput" placeholder="Current Password" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-gold">
-                            <input type="password" id="newPassInput" placeholder="New Password" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-gold">
-                            <button onclick="changePassword()" class="w-full bg-brand-orange hover:bg-amber-600 text-white font-bold py-2 rounded-xl text-sm transition-all">
-                                Update Password
-                            </button>
-                            <p id="passChangeMsg" class="text-xs text-center hidden"></p>
-                        </div>
-                    </div>
-
                     <!-- Manage Menu Items -->
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
@@ -206,9 +197,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Initial Default Data
         const defaultPhoneNumber = "94771234567";
-        const defaultPassword = "admin123";
         const defaultMenuItems = [
             {
                 id: 1,
@@ -240,13 +229,8 @@
             }
         ];
 
-        // Load or initialize LocalStorage
         function getPhone() {
             return localStorage.getItem('adminPhone') || defaultPhoneNumber;
-        }
-
-        function getPassword() {
-            return localStorage.getItem('adminPassword') || defaultPassword;
         }
 
         function getMenu() {
@@ -254,7 +238,6 @@
             return stored ? JSON.parse(stored) : defaultMenuItems;
         }
 
-        // Render Menu on Page
         function renderMenu() {
             const menuGrid = document.getElementById('menuGrid');
             const menu = getMenu();
@@ -283,12 +266,10 @@
                 </div>
             `).join('');
 
-            // Update Header/Hero Buttons
             document.getElementById('navWhatsappBtn').href = `https://wa.me/${phone}?text=${encodeURIComponent('Hello A&D Foods, I would like to make an inquiry.')}`;
             document.getElementById('heroCustomOrderBtn').href = `https://wa.me/${phone}?text=${encodeURIComponent('Hello A&D Foods, I would like to discuss a custom order.')}`;
         }
 
-        // Admin Modal Functions
         function openAdminModal() {
             document.getElementById('adminModal').classList.remove('hidden');
             document.getElementById('adminLoginView').classList.remove('hidden');
@@ -303,7 +284,7 @@
 
         function loginAdmin() {
             const pass = document.getElementById('adminPasswordInput').value;
-            if (pass === getPassword()) {
+            if (pass === PERMANENT_ADMIN_PASSWORD) {
                 document.getElementById('adminLoginView').classList.add('hidden');
                 document.getElementById('adminControlsView').classList.remove('hidden');
                 document.getElementById('adminPhoneInput').value = getPhone();
@@ -320,34 +301,6 @@
                 alert('WhatsApp Number Updated Successfully!');
                 renderMenu();
             }
-        }
-
-        function changePassword() {
-            const currentPass = document.getElementById('currentPassInput').value;
-            const newPass = document.getElementById('newPassInput').value.trim();
-            const msg = document.getElementById('passChangeMsg');
-
-            if (currentPass !== getPassword()) {
-                msg.textContent = "Current Password is incorrect!";
-                msg.className = "text-xs text-center text-rose-500";
-                msg.classList.remove('hidden');
-                return;
-            }
-
-            if (!newPass) {
-                msg.textContent = "Please enter a valid new password!";
-                msg.className = "text-xs text-center text-rose-500";
-                msg.classList.remove('hidden');
-                return;
-            }
-
-            localStorage.setItem('adminPassword', newPass);
-            msg.textContent = "Password Updated Successfully!";
-            msg.className = "text-xs text-center text-emerald-500";
-            msg.classList.remove('hidden');
-
-            document.getElementById('currentPassInput').value = '';
-            document.getElementById('newPassInput').value = '';
         }
 
         function renderAdminMenuList() {
@@ -430,7 +383,6 @@
             renderMenu();
         }
 
-        // Initialize Page
         document.addEventListener('DOMContentLoaded', renderMenu);
     </script>
 </body>
