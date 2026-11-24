@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&D FOODS | Verified Rider Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+</head>
+<body class="bg-[#0D1117] text-slate-200 min-h-screen font-sans p-4 sm:p-6">
+    <div class="max-w-3xl mx-auto space-y-6">
+        <!-- TOP BAR -->
+        <div class="bg-[#161B22] border border-[#30363D] rounded-2xl p-4 flex items-center justify-between gap-3">
+            <div>
+                <h1 class="text-lg sm:text-xl font-bold text-white"><i class="fa-solid fa-motorcycle text-amber-400 mr-2"></i>A&D Foods Rider Mode</h1>
+                <p id="gpsStatusText" class="text-xs text-slate-400 mt-0.5">Checking GPS proximity to kitchen...</p>
+            </div>
+            <a href="index.html" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl border border-[#30363D]">Back to Store</a>
+        </div>
+
+        <!-- SECURITY NOTICE BANNER -->
+        <div id="securityAlertBox" class="hidden bg-amber-500/15 border border-amber-500/40 text-amber-200 rounded-2xl p-4 text-xs leading-relaxed"></div>
+
+        <!-- STEP 1: RIDER REGISTRATION & LOGIN REQUEST FORM -->
+        <div id="riderAuthCard" class="bg-[#161B22] border border-[#30363D] rounded-2xl p-6 space-y-5">
+            <div>
+                <h2 class="text-base font-bold text-white">1. Rider Verification & Login Request</h2>
+                <p class="text-xs text-slate-400 mt-1">Enter your details first. Admin must approve your request before you receive an OTP. For security, access re-verifies every 7 days.</p>
+            </div>
+
+            <form onsubmit="submitRiderRequest(event)" class="space-y-4 text-xs sm:text-sm">
+                <div class="grid sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Full Name *</label>
+                        <input type="text" id="riderName" required placeholder="Rider full name" class="w-full bg-[#0D1117] border border-[#30363D] rounded-xl px-3.5 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Phone Number *</label>
+                        <input type="tel" id="riderPhone" required placeholder="0771234567" class="w-full bg-[#0D1117] border border-[#30363D] rounded-xl px-3.5 py-2.5 text-white">
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Bike Number Plate *</label>
+                        <input type="text" id="riderPlate" required placeholder="WP ABC-1234" class="w-full bg-[#0D1117] border border-[#30363D] rounded-xl px-3.5 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Bike Type / Model *</label>
+                        <input type="text" id="riderBikeModel" required placeholder="e.g. Honda Dio / CT100" class="w-full bg-[#0D1117] border border-[#30363D] rounded-xl px-3.5 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Bike Colour *</label>
+                        <input type="text" id="riderBikeColor" required placeholder="e.g. Black & Red" class="w-full bg-[#0D1117] border border-[#30363D] rounded-xl px-3.5 py-2.5 text-white">
+                    </div>
+                </div>
+
+                <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-black font-bold px-5 py-2.5 rounded-xl cursor-pointer">
+                    Send Login Request to Admin
+                </button>
+            </form>
+
+            <!-- OTP VERIFICATION BOX -->
+            <div id="otpVerifySection" class="hidden pt-4 border-t border-[#30363D] space-y-3">
+                <p id="otpDispatchInfo" class="text-xs text-emerald-400 font-semibold"></p>
+                <div class="flex gap-2 max-w-xs">
+                    <input type="text" id="riderOtpInput" maxlength="6" placeholder="6-digit OTP" class="flex-1 bg-[#0D1117] border border-[#30363D] rounded-xl px-3.5 py-2 text-sm text-white font-mono">
+                    <button onclick="verifyRiderOtp()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-xs cursor-pointer">Verify OTP</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: VERIFIED RIDER ORDER DASHBOARD -->
+        <div id="riderDashboardCard" class="hidden bg-[#161B22] border border-[#30363D] rounded-2xl p-6 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#30363D] pb-3">
+                <div>
+                    <h2 class="text-base font-bold text-white">Approved Kitchen Orders</h2>
+                    <p id="riderSessionBadge" class="text-xs text-emerald-400"></p>
+                </div>
+                <button onclick="logoutRiderLocal()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-[#30363D] cursor-pointer">Lock Session</button>
+            </div>
+            <div id="riderOrdersList" class="space-y-3"></div>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKzNie7S8N6Hk_WAOvzooj0AQXKFO09Ps",
+            authDomain: "ad-foods-5fac8.firebaseapp.com",
+            databaseURL: "https://ad-foods-5fac8-default-rtdb.firebaseio.com",
+            projectId: "ad-foods-5fac8",
+            storageBucket: "ad-foods-5fac8.firebasestorage.app",
+            messagingSenderId: "874850210159",
+            appId: "1:874850210159:web:e18640c67bda3641d2d89a",
+            measurementId: "G-QEJ8KB1JN1"
+        };
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.database();
+
+        const KITCHEN_COORDS = { lat: 7.2906, lng: 80.6337 };
+        const MAX_RIDER_RADIUS_KM = 5;
+        const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+        const SESSION_KEY = "ad_verified_rider_id";
+
+        let activeRiderId = localStorage.getItem(SESSION_KEY) || null;
+        let riderDistanceKm = null;
+        let latestOrders = {};
+        let latestRiders = {};
+
+        updateRiderGPS();
+
+        db.ref('riders').on('value', (snap) => {
+            latestRiders = snap.val() || {};
+            evaluateRiderAuthState();
+        });
+
+        db.ref('orders').on('value', (snap) => {
+            latestOrders = snap.val() || {};
+            renderRiderOrders();
+        });
+
+        function updateRiderGPS() {
+            const el = document.getElementById('gpsStatusText');
+            if (!navigator.geolocation) {
+                el.textContent = "GPS unavailable on this device.";
+                return;
+            }
+            navigator.geolocation.watchPosition((pos) => {
+                const R = 6371;
+                const dLat = (pos.coords.latitude - KITCHEN_COORDS.lat) * Math.PI / 180;
+                const dLon = (pos.coords.longitude - KITCHEN_COORDS.lng) * Math.PI / 180;
+                const a = Math.sin(dLat / 2) ** 2 +
+                          Math.cos(KITCHEN_COORDS.lat * Math.PI / 180) * Math.cos(pos.coords.latitude * Math.PI / 180) *
+                          Math.sin(dLon / 2) ** 2;
+                riderDistanceKm = Number((R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))).toFixed(2));
+                const inside = riderDistanceKm <= MAX_RIDER_RADIUS_KM;
+                el.innerHTML = `Distance from kitchen: <strong class="text-white">${riderDistanceKm} km</strong> • ${inside ? `<span class="text-emerald-400">Within ${MAX_RIDER_RADIUS_KM} km zone (Eligible)</span>` : `<span class="text-rose-400">Outside ${MAX_RIDER_RADIUS_KM} km zone</span>`}`;
+                renderRiderOrders();
+            }, () => {
+                el.textContent = "Enable location permission to verify proximity to kitchen.";
+            });
+        }
+
+        function submitRiderRequest(e) {
+            e.preventDefault();
+            const phoneClean = document.getElementById('riderPhone').value.trim().replace(/\D/g, '');
+            const riderId = 'RIDER-' + phoneClean;
+            const payload = {
+                id: riderId,
+                name: document.getElementById('riderName').value.trim(),
+                phone: document.getElementById('riderPhone').value.trim(),
+                plate: document.getElementById('riderPlate').value.trim().toUpperCase(),
+                bikeModel: document.getElementById('riderBikeModel').value.trim(),
+                bikeColor: document.getElementById('riderBikeColor').value.trim(),
+                status: 'PENDING_ADMIN_APPROVAL',
+                otpCode: null,
+                otpVerified: false,
+                requestedAt: Date.now(),
+                securityNotice: ''
+            };
+            activeRiderId = riderId;
+            localStorage.setItem(SESSION_KEY, riderId);
+            db.ref('riders/' + riderId).set(payload);
+            alert('Request sent! Wait for Admin approval to receive your OTP.');
+        }
+
+        function evaluateRiderAuthState() {
+            const noticeBox = document.getElementById('securityAlertBox');
+            const authCard = document.getElementById('riderAuthCard');
+            const dashCard = document.getElementById('riderDashboardCard');
+            const otpSec = document.getElementById('otpVerifySection');
+            const otpInfo = document.getElementById('otpDispatchInfo');
+
+            if (!activeRiderId || !latestRiders[activeRiderId]) {
+                authCard.classList.remove('hidden');
+                dashCard.classList.add('hidden');
+                otpSec.classList.add('hidden');
+                return;
+            }
+
+            const r = latestRiders[activeRiderId];
+            document.getElementById('riderName').value = r.name || '';
+            document.getElementById('riderPhone').value = r.phone || '';
+            document.getElementById('riderPlate').value = r.plate || '';
+            document.getElementById('riderBikeModel').value = r.bikeModel || '';
+            document.getElementById('riderBikeColor').value = r.bikeColor || '';
+
+            if (r.securityNotice) {
+                noticeBox.classList.remove('hidden');
+                noticeBox.textContent = r.securityNotice;
+            } else {
+                noticeBox.classList.add('hidden');
+            }
+
+            if (r.status === 'WEEKLY_REVERIFY_REQUIRED') {
+                authCard.classList.remove('hidden');
+                dashCard.classList.add('hidden');
+                otpSec.classList.add('hidden');
+                return;
+            }
+
+            const expired = r.approvedAt && (Date.now() - r.approvedAt >= SEVEN_DAYS_MS);
+            if (r.otpVerified && !expired) {
+                authCard.classList.add('hidden');
+                dashCard.classList.remove('hidden');
+                document.getElementById('riderSessionBadge').textContent = `Verified Rider: ${r.name} (${r.plate}) • 100% Delivery Fee Earned`;
+                renderRiderOrders();
+            } else if (r.status === 'OTP_SENT' && r.otpCode) {
+                authCard.classList.remove('hidden');
+                dashCard.classList.add('hidden');
+                otpSec.classList.remove('hidden');
+                otpInfo.textContent = `Admin approved! OTP dispatched for ${r.phone}: ${r.otpCode}`;
+            } else {
+                authCard.classList.remove('hidden');
+                dashCard.classList.add('hidden');
+                otpSec.classList.add('hidden');
+            }
+        }
+
+        function verifyRiderOtp() {
+            if (!activeRiderId || !latestRiders[activeRiderId]) return;
+            const r = latestRiders[activeRiderId];
+            const entered = document.getElementById('riderOtpInput').value.trim();
+            if (r.otpCode && entered === String(r.otpCode)) {
+                db.ref('riders/' + activeRiderId).update({
+                    otpVerified: true,
+                    status: 'APPROVED_ACTIVE',
+                    approvedAt: Date.now(),
+                    securityNotice: ''
+                });
+            } else {
+                alert('Invalid OTP code.');
+            }
+        }
+
+        function logoutRiderLocal() {
+            localStorage.removeItem(SESSION_KEY);
+            activeRiderId = null;
+            evaluateRiderAuthState();
+        }
+
+        function renderRiderOrders() {
+            const listEl = document.getElementById('riderOrdersList');
+            if (!listEl || !activeRiderId || !latestRiders[activeRiderId]) return;
+            const rider = latestRiders[activeRiderId];
+            if (!rider.otpVerified) return;
+
+            const approvedOrders = Object.values(latestOrders).filter(o => o.adminStatus === 'APPROVED_FOR_RIDERS');
+            if (!approvedOrders.length) {
+                listEl.innerHTML = `<p class="text-xs text-slate-400">No kitchen-approved orders waiting right now.</p>`;
+                return;
+            }
+
+            const isNearEnough = riderDistanceKm === null || riderDistanceKm <= MAX_RIDER_RADIUS_KM;
+
+            listEl.innerHTML = approvedOrders.map(o => {
+                const isMine = o.assignedRider && o.assignedRider.id === rider.id;
+                const takenByOther = o.assignedRider && o.assignedRider.id !== rider.id;
+                return `
+                <div class="bg-[#0D1117] border border-[#30363D] rounded-xl p-4 space-y-2 text-xs">
+                    <div class="flex justify-between items-start gap-2">
+                        <div>
+                            <p class="font-bold text-white">${escapeHtml(o.id)} • ${escapeHtml(o.itemTitle)} x${o.qty}</p>
+                            <p class="text-slate-400">Address: ${escapeHtml(o.customerAddress)} (${escapeHtml(o.distanceKm)} km)</p>
+                        </div>
+                        <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold px-2.5 py-1 rounded-lg whitespace-nowrap">
+                            Your Fee: LKR ${escapeHtml(o.deliveryFee)} (100%)
+                        </span>
+                    </div>
+                    <p class="text-slate-300">Payment: ${escapeHtml(o.paymentMethod)} • Total Order: LKR ${escapeHtml(o.grandTotal)}</p>
+                    <div class="pt-1 flex flex-wrap gap-2">
+                        ${!o.assignedRider ? (
+                            isNearEnough
+                                ? `<button onclick="acceptOrder('${o.id}')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-lg cursor-pointer">Accept Order</button>`
+                                : `<span class="text-rose-400 font-semibold">Too far (${riderDistanceKm} km > ${MAX_RIDER_RADIUS_KM} km limit)</span>`
+                        ) : isMine ? `
+                            ${o.riderStatus !== 'DELIVERED' ? `<button onclick="markDelivered('${o.id}')" class="bg-amber-500 hover:bg-amber-400 text-black font-bold px-4 py-2 rounded-lg cursor-pointer">Mark Delivered</button>` : `<span class="text-emerald-400 font-bold">Delivered</span>`}
+                        ` : `<span class="text-slate-500">Accepted by ${escapeHtml(o.assignedRider.name)}</span>`}
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function acceptOrder(orderId) {
+            const rider = latestRiders[activeRiderId];
+            if (!rider || !rider.otpVerified) return;
+            db.ref('orders/' + orderId).update({
+                riderStatus: 'ACCEPTED_BY_RIDER',
+                assignedRider: {
+                    id: rider.id,
+                    name: rider.name,
+                    phone: rider.phone,
+                    plate: rider.plate,
+                    bikeModel: rider.bikeModel,
+                    bikeColor: rider.bikeColor
+                }
+            });
+        }
+
+        function markDelivered(orderId) {
+            db.ref('orders/' + orderId).update({
+                riderStatus: 'DELIVERED'
+            });
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+</html>
