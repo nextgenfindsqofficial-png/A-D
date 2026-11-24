@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A&D FOODS | Authentic Sri Lankan Cuisine</title>
+    <title>A&D FOODS | Authentic Sri Lankan Cuisine & Rider Hub</title>
     <meta name="google-site-verification" content="51nkjJSgHakoFaGtzLbRmyR5e6KUE-mHm_EMQP1Fwco" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -46,7 +46,7 @@
     <!-- NAVIGATION BAR -->
     <header class="fixed top-0 left-0 w-full z-40 glass-header border-b border-brand-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2">
-            <a href="#" class="flex items-center gap-3 group">
+            <a href="#" onclick="switchPageView('store')" class="flex items-center gap-3 group">
                 <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-orange to-brand-gold p-[2px] shadow-lg shadow-brand-orange/20 transition-transform group-hover:scale-105">
                     <div class="w-full h-full bg-brand-dark rounded-full flex items-center justify-center font-serif font-bold text-brand-gold text-base">
                         A&D
@@ -58,17 +58,17 @@
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center gap-7 font-medium text-sm text-slate-300">
-                <a href="#home" class="hover:text-brand-gold transition-colors">Home</a>
-                <a href="#menu" class="hover:text-brand-gold transition-colors">Menu</a>
-                <a href="#track-order" class="hover:text-brand-gold transition-colors">Track Order</a>
+            <nav id="storeNavLinks" class="hidden md:flex items-center gap-7 font-medium text-sm text-slate-300">
+                <a href="#home" onclick="switchPageView('store')" class="hover:text-brand-gold transition-colors">Home</a>
+                <a href="#menu" onclick="switchPageView('store')" class="hover:text-brand-gold transition-colors">Menu</a>
+                <a href="#track-order" onclick="switchPageView('store')" class="hover:text-brand-gold transition-colors">Track Order</a>
             </nav>
 
             <div class="flex items-center gap-2 sm:gap-3">
-                <a href="rider.html" class="flex items-center gap-1.5 text-xs font-semibold text-amber-300 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 px-3 py-2 rounded-lg border border-amber-500/30 transition-all">
+                <button id="toggleRiderModeBtn" onclick="toggleRiderModeView()" class="flex items-center gap-1.5 text-xs font-semibold text-amber-300 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 px-3 py-2 rounded-lg border border-amber-500/30 transition-all cursor-pointer">
                     <i class="fa-solid fa-motorcycle"></i>
-                    <span>Rider Portal</span>
-                </a>
+                    <span id="riderToggleLabel">Rider Mode</span>
+                </button>
                 <button onclick="openAdminModal()" class="flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition-colors bg-brand-card hover:bg-slate-800 px-3 py-2 rounded-lg border border-brand-border cursor-pointer">
                     <i class="fa-solid fa-lock text-brand-gold"></i>
                     <span>Admin</span>
@@ -81,67 +81,147 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex-1 flex items-center">
-        <div class="grid md:grid-cols-2 gap-12 items-center w-full">
-            <div class="space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-xs font-semibold">
-                    <i class="fa-solid fa-pepper-hot"></i>
-                    <span>LIVE KITCHEN AVAILABILITY & VERIFIED RIDERS</span>
+    <!-- STOREFRONT VIEW -->
+    <main id="storefrontView" class="flex-1">
+        <!-- HERO SECTION -->
+        <section id="home" class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex items-center">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-xs font-semibold">
+                        <i class="fa-solid fa-pepper-hot"></i>
+                        <span>LIVE KITCHEN AVAILABILITY & VERIFIED RIDERS</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-serif font-bold text-white leading-tight">
+                        Authentic Sri Lankan <span class="bg-gradient-to-r from-brand-orange to-brand-gold bg-clip-text text-transparent">Flavors, Made Fresh Daily!</span>
+                    </h1>
+                    <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
+                        Check live availability before ordering Idiyappam, Kiribath, Hot Roti, and Lawariya. Every order is confirmed by our kitchen first, then delivered by verified local riders.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#menu" class="bg-gradient-to-r from-brand-orange to-amber-600 text-white font-semibold px-6 py-3.5 rounded-xl hover:shadow-lg hover:shadow-brand-orange/20 transition-all flex items-center gap-2">
+                            <span>Explore Live Menu</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a id="heroCustomOrderBtn" href="#" target="_blank" class="bg-brand-card border border-brand-border hover:border-slate-500 text-slate-200 font-semibold px-6 py-3.5 rounded-xl transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-check text-brand-gold"></i>
+                            <span>Custom Catering</span>
+                        </a>
+                    </div>
                 </div>
-                <h1 class="text-4xl sm:text-6xl font-serif font-bold text-white leading-tight">
-                    Authentic Sri Lankan <span class="bg-gradient-to-r from-brand-orange to-brand-gold bg-clip-text text-transparent">Flavors, Made Fresh Daily!</span>
-                </h1>
-                <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
-                    Check live availability before ordering Idiyappam, Kiribath, Hot Roti, and Lawariya. Every order is confirmed by our kitchen first, then delivered by verified local riders.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <a href="#menu" class="bg-gradient-to-r from-brand-orange to-amber-600 text-white font-semibold px-6 py-3.5 rounded-xl hover:shadow-lg hover:shadow-brand-orange/20 transition-all flex items-center gap-2">
-                        <span>Explore Live Menu</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                    <a id="heroCustomOrderBtn" href="#" target="_blank" class="bg-brand-card border border-brand-border hover:border-slate-500 text-slate-200 font-semibold px-6 py-3.5 rounded-xl transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-calendar-check text-brand-gold"></i>
-                        <span>Custom Catering</span>
-                    </a>
+                <div class="relative">
+                    <div class="w-full h-[340px] sm:h-[430px] rounded-3xl overflow-hidden border border-brand-border bg-brand-card shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Sri Lankan Cuisine" class="w-full h-full object-cover">
+                    </div>
                 </div>
             </div>
-            <div class="relative">
-                <div class="w-full h-[340px] sm:h-[430px] rounded-3xl overflow-hidden border border-brand-border bg-brand-card shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Sri Lankan Cuisine" class="w-full h-full object-cover">
+        </section>
+
+        <!-- MENU SECTION -->
+        <section id="menu" class="py-16 bg-brand-card/50 border-y border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">Our Daily Specialties</h2>
+                    <p class="text-slate-400 text-sm">Availability status is shown live before you place an order.</p>
+                </div>
+
+                <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="col-span-full text-center py-10 text-slate-400">Loading live menu...</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- MENU SECTION -->
-    <section id="menu" class="py-16 bg-brand-card/50 border-y border-brand-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">Our Daily Specialties</h2>
-                <p class="text-slate-400 text-sm">Availability status is shown live before you place an order.</p>
+        <!-- CUSTOMER ORDER TRACKER -->
+        <section id="track-order" class="py-14 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
+            <div class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                        <h3 class="font-serif text-xl font-bold text-white">Track Your Order Status</h3>
+                        <p class="text-xs text-slate-400">Enter your Order ID (e.g., ORD-1732440000) to see kitchen & rider updates.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="text" id="trackOrderIdInput" placeholder="Order ID..." class="bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-brand-gold">
+                        <button onclick="trackCustomerOrder()" class="bg-brand-orange hover:bg-amber-600 text-white text-xs font-bold px-4 py-2 rounded-xl cursor-pointer">Track</button>
+                    </div>
+                </div>
+                <div id="trackOrderResult" class="text-xs text-slate-300 bg-brand-dark/60 border border-brand-border rounded-xl p-4 hidden"></div>
             </div>
+        </section>
+    </main>
 
-            <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="col-span-full text-center py-10 text-slate-400">Loading live menu...</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CUSTOMER ORDER TRACKER -->
-    <section id="track-order" class="py-14 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
-        <div class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+    <!-- RIDER PORTAL VIEW -->
+    <section id="riderPortalView" class="hidden flex-1 pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <div class="bg-brand-card border border-brand-border rounded-2xl p-4 flex items-center justify-between gap-3">
                 <div>
-                    <h3 class="font-serif text-xl font-bold text-white">Track Your Order Status</h3>
-                    <p class="text-xs text-slate-400">Enter your Order ID (e.g., ORD-1732440000) to see kitchen & rider updates.</p>
+                    <h1 class="text-lg sm:text-xl font-bold text-white"><i class="fa-solid fa-motorcycle text-amber-400 mr-2"></i>A&D Foods Rider Mode</h1>
+                    <p id="gpsStatusText" class="text-xs text-slate-400 mt-0.5">Checking GPS proximity to kitchen...</p>
                 </div>
-                <div class="flex gap-2">
-                    <input type="text" id="trackOrderIdInput" placeholder="Order ID..." class="bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-brand-gold">
-                    <button onclick="trackCustomerOrder()" class="bg-brand-orange hover:bg-amber-600 text-white text-xs font-bold px-4 py-2 rounded-xl cursor-pointer">Track</button>
+                <button onclick="switchPageView('store')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl border border-brand-border cursor-pointer">Back to Store</button>
+            </div>
+
+            <!-- SECURITY NOTICE BANNER -->
+            <div id="securityAlertBox" class="hidden bg-amber-500/15 border border-amber-500/40 text-amber-200 rounded-2xl p-4 text-xs leading-relaxed"></div>
+
+            <!-- STEP 1: RIDER REGISTRATION & LOGIN REQUEST FORM -->
+            <div id="riderAuthCard" class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-5">
+                <div>
+                    <h2 class="text-base font-bold text-white">1. Rider Verification & Login Request</h2>
+                    <p class="text-xs text-slate-400 mt-1">Enter your details first. Admin must approve your request before you receive an OTP. For security, access re-verifies every 7 days.</p>
+                </div>
+
+                <form onsubmit="submitRiderRequest(event)" class="space-y-4 text-xs sm:text-sm">
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Full Name *</label>
+                            <input type="text" id="riderName" required placeholder="Rider full name" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2.5 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Phone Number *</label>
+                            <input type="tel" id="riderPhone" required placeholder="0771234567" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2.5 text-white">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Bike Number Plate *</label>
+                            <input type="text" id="riderPlate" required placeholder="WP ABC-1234" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2.5 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Bike Type / Model *</label>
+                            <input type="text" id="riderBikeModel" required placeholder="e.g. Honda Dio / CT100" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2.5 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Bike Colour *</label>
+                            <input type="text" id="riderBikeColor" required placeholder="e.g. Black & Red" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2.5 text-white">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-black font-bold px-5 py-2.5 rounded-xl cursor-pointer">
+                        Send Login Request to Admin
+                    </button>
+                </form>
+
+                <!-- OTP VERIFICATION BOX -->
+                <div id="otpVerifySection" class="hidden pt-4 border-t border-brand-border space-y-3">
+                    <p id="otpDispatchInfo" class="text-xs text-emerald-400 font-semibold"></p>
+                    <div class="flex gap-2 max-w-xs">
+                        <input type="text" id="riderOtpInput" maxlength="6" placeholder="6-digit OTP" class="flex-1 bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2 text-sm text-white font-mono">
+                        <button onclick="verifyRiderOtp()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-xs cursor-pointer">Verify OTP</button>
+                    </div>
                 </div>
             </div>
-            <div id="trackOrderResult" class="text-xs text-slate-300 bg-brand-dark/60 border border-brand-border rounded-xl p-4 hidden"></div>
+
+            <!-- STEP 2: VERIFIED RIDER ORDER DASHBOARD -->
+            <div id="riderDashboardCard" class="hidden bg-brand-card border border-brand-border rounded-2xl p-6 space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-brand-border pb-3">
+                    <div>
+                        <h2 class="text-base font-bold text-white">Approved Kitchen Orders</h2>
+                        <p id="riderSessionBadge" class="text-xs text-emerald-400"></p>
+                    </div>
+                    <button onclick="logoutRiderLocal()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-brand-border cursor-pointer">Lock Session</button>
+                </div>
+                <div id="riderOrdersList" class="space-y-3"></div>
+            </div>
         </div>
     </section>
 
@@ -149,7 +229,7 @@
     <footer class="bg-brand-dark border-t border-brand-border py-10 text-slate-500 text-xs">
         <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
             <p class="font-serif text-lg text-slate-300 font-bold">A&D FOODS</p>
-            <p>© 2026 A&D Foods. All Rights Reserved. • <a href="rider.html" class="text-amber-400 hover:underline">Rider Portal</a></p>
+            <p>© 2026 A&D Foods. All Rights Reserved. • <button onclick="switchPageView('rider')" class="text-amber-400 hover:underline cursor-pointer">Rider Mode</button></p>
         </div>
     </footer>
 
@@ -172,6 +252,8 @@
                 <input type="hidden" id="orderItemUnitPrice">
                 <input type="hidden" id="orderCalcDistanceKm" value="1">
                 <input type="hidden" id="orderCalcDeliveryFee" value="100">
+                <input type="hidden" id="orderCustLat" value="">
+                <input type="hidden" id="orderCustLng" value="">
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -202,10 +284,11 @@
                     <div class="flex items-center justify-between mb-1">
                         <label class="text-xs text-slate-400">Delivery Address *</label>
                         <button type="button" onclick="detectCustomerGPS()" class="text-[11px] font-semibold text-amber-400 hover:underline cursor-pointer">
-                            <i class="fa-solid fa-location-crosshairs mr-1"></i>Use GPS Distance
+                            <i class="fa-solid fa-location-crosshairs mr-1"></i>Pin GPS Location
                         </button>
                     </div>
                     <textarea id="custAddress" rows="2" required placeholder="Street, town / landmark..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2 text-white"></textarea>
+                    <p id="custGpsPinLabel" class="text-[11px] text-emerald-400 mt-1 hidden"></p>
                 </div>
 
                 <!-- LIVE FEE BREAKDOWN (100% Delivery Fee to Rider) -->
@@ -215,21 +298,21 @@
                         <span id="summaryFoodTotal">LKR 0</span>
                     </div>
                     <div class="flex justify-between text-amber-300">
-                        <span id="summaryDeliveryLabel">Rider Delivery Fee (100% to Rider):</span>
+                        <span id="summaryDeliveryLabel">Estimated Rider Fee (100% to Rider):</span>
                         <span id="summaryDeliveryFee">LKR 0</span>
                     </div>
                     <div class="flex justify-between font-bold text-white text-sm pt-1.5 border-t border-brand-border">
-                        <span>Total Payable:</span>
+                        <span>Estimated Total Payable:</span>
                         <span id="summaryGrandTotal">LKR 0</span>
                     </div>
                 </div>
 
                 <p class="text-[11px] text-slate-400">
                     <i class="fa-solid fa-circle-info text-brand-gold mr-1"></i>
-                    Order goes to Admin first to confirm food availability, then becomes visible to verified nearby riders.
+                    Order goes to Admin first to confirm food availability, then becomes visible to verified nearby riders. Final rider fee auto-calculates upon arrival.
                 </p>
 
-                <button type="submit" id="submitOrderBtn" class="w-full bg-gradient-to-r from-brand-orange to-amber-600 hover:opacity-95 text-white font-bold py-3 rounded-xl transition-all cursor-pointer">
+                <button type="submit" class="w-full bg-gradient-to-r from-brand-orange to-amber-600 hover:opacity-95 text-white font-bold py-3 rounded-xl transition-all cursor-pointer">
                     Send Order for Kitchen Approval
                 </button>
             </form>
@@ -321,6 +404,9 @@
         const fallbackImage = "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80";
         const defaultPhoneNumber = "94771234567";
         const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+        const MAX_RIDER_RADIUS_KM = 5;
+        const ARRIVAL_THRESHOLD_KM = 0.25; // Within 250m of drop-off counts as arrived
+        const SESSION_KEY = "ad_verified_rider_id";
 
         // Kitchen reference coordinates (update if needed)
         const KITCHEN_COORDS = { lat: 7.2906, lng: 80.6337 };
@@ -381,6 +467,37 @@
         let rateConfig = { baseFee: 100, perKm: 60 };
         let ordersMap = {};
         let ridersMap = {};
+        let activeRiderId = localStorage.getItem(SESSION_KEY) || null;
+        let riderCurrentCoords = null;
+        let riderDistanceToKitchenKm = null;
+        let gpsStarted = false;
+
+        function switchPageView(view) {
+            const storeView = document.getElementById('storefrontView');
+            const riderView = document.getElementById('riderPortalView');
+            const toggleLabel = document.getElementById('riderToggleLabel');
+
+            if (view === 'rider') {
+                storeView.classList.add('hidden');
+                riderView.classList.remove('hidden');
+                toggleLabel.textContent = 'Store View';
+                if (!gpsStarted) {
+                    gpsStarted = true;
+                    updateRiderGPS();
+                }
+                evaluateRiderAuthState();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                riderView.classList.add('hidden');
+                storeView.classList.remove('hidden');
+                toggleLabel.textContent = 'Rider Mode';
+            }
+        }
+
+        function toggleRiderModeView() {
+            const isRiderVisible = !document.getElementById('riderPortalView').classList.contains('hidden');
+            switchPageView(isRiderVisible ? 'store' : 'rider');
+        }
 
         db.ref('menu').on('value', (snap) => {
             const data = snap.val();
@@ -415,11 +532,11 @@
         db.ref('orders').on('value', (snap) => {
             ordersMap = snap.val() || {};
             renderAdminOrders();
+            renderRiderOrders();
         });
 
         db.ref('riders').on('value', (snap) => {
             ridersMap = snap.val() || {};
-            // Auto-expire sessions older than 7 days
             Object.entries(ridersMap).forEach(([id, r]) => {
                 if (r && r.status === 'APPROVED_ACTIVE' && r.approvedAt && (Date.now() - r.approvedAt >= SEVEN_DAYS_MS)) {
                     db.ref('riders/' + id).update({
@@ -430,6 +547,7 @@
                 }
             });
             renderAdminRiders();
+            evaluateRiderAuthState();
         });
 
         function isItemAvailable(item) {
@@ -485,6 +603,9 @@
             document.getElementById('orderModalAvailBadge').innerHTML = `<span class="text-emerald-400"><i class="fa-solid fa-check-circle mr-1"></i>Available in Kitchen</span>`;
             document.getElementById('orderQty').value = 1;
             document.getElementById('orderCalcDistanceKm').value = 1;
+            document.getElementById('orderCustLat').value = '';
+            document.getElementById('orderCustLng').value = '';
+            document.getElementById('custGpsPinLabel').classList.add('hidden');
             recalculateOrderSummary();
             document.getElementById('orderModal').classList.remove('hidden');
         }
@@ -493,14 +614,18 @@
             document.getElementById('orderModal').classList.add('hidden');
         }
 
-        function calculateDistanceKm(lat1, lon1, lat2, lon2) {
+        function haversineStraightKm(lat1, lon1, lat2, lon2) {
             const R = 6371;
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat / 2) ** 2 +
                       Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
                       Math.sin(dLon / 2) ** 2;
-            const straightKm = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        }
+
+        function calculateRoadAdjustedKm(lat1, lon1, lat2, lon2) {
+            const straightKm = haversineStraightKm(lat1, lon1, lat2, lon2);
             return Math.max(1, Number((straightKm * 1.3).toFixed(1)));
         }
 
@@ -512,10 +637,17 @@
         function detectCustomerGPS() {
             if (!navigator.geolocation) return alert('GPS not supported in this browser.');
             navigator.geolocation.getCurrentPosition((pos) => {
-                const km = calculateDistanceKm(KITCHEN_COORDS.lat, KITCHEN_COORDS.lng, pos.coords.latitude, pos.coords.longitude);
+                const lat = pos.coords.latitude;
+                const lng = pos.coords.longitude;
+                const km = calculateRoadAdjustedKm(KITCHEN_COORDS.lat, KITCHEN_COORDS.lng, lat, lng);
+                document.getElementById('orderCustLat').value = lat;
+                document.getElementById('orderCustLng').value = lng;
                 document.getElementById('orderCalcDistanceKm').value = km;
+                const pinLbl = document.getElementById('custGpsPinLabel');
+                pinLbl.classList.remove('hidden');
+                pinLbl.textContent = `GPS pinned (${lat.toFixed(4)}, ${lng.toFixed(4)}) • Est. distance: ${km} km`;
                 recalculateOrderSummary();
-            }, () => alert('Could not get GPS location. Default 1 km estimate applied.'));
+            }, () => alert('Could not get GPS location. Default estimate applied.'));
         }
 
         function recalculateOrderSummary() {
@@ -527,7 +659,7 @@
             document.getElementById('orderCalcDeliveryFee').value = delFee;
 
             document.getElementById('summaryFoodTotal').textContent = `LKR ${foodTotal}`;
-            document.getElementById('summaryDeliveryLabel').textContent = `Rider Delivery Fee (${km} km • 100% to Rider):`;
+            document.getElementById('summaryDeliveryLabel').textContent = `Estimated Rider Fee (${km} km • 100% to Rider):`;
             document.getElementById('summaryDeliveryFee').textContent = `LKR ${delFee}`;
             document.getElementById('summaryGrandTotal').textContent = `LKR ${foodTotal + delFee}`;
         }
@@ -547,6 +679,8 @@
             const foodTotal = qty * unitPrice;
             const distanceKm = Number(document.getElementById('orderCalcDistanceKm').value) || 1;
             const deliveryFee = computeDeliveryFee(distanceKm);
+            const latVal = document.getElementById('orderCustLat').value;
+            const lngVal = document.getElementById('orderCustLng').value;
 
             const orderId = 'ORD-' + Date.now();
             const orderData = {
@@ -555,13 +689,15 @@
                 qty,
                 foodTotal,
                 distanceKm,
-                deliveryFee, // 100% goes to rider, zero profit to store
+                deliveryFee,
+                feeFinalized: false,
                 grandTotal: foodTotal + deliveryFee,
                 customerName: document.getElementById('custName').value.trim(),
                 customerPhone: document.getElementById('custPhone').value.trim(),
                 customerAddress: document.getElementById('custAddress').value.trim(),
+                customerCoords: (latVal && lngVal) ? { lat: Number(latVal), lng: Number(lngVal) } : null,
                 paymentMethod: document.getElementById('custPayment').value,
-                adminStatus: 'PENDING_ADMIN_APPROVAL', // Riders only see once APPROVED_FOR_RIDERS
+                adminStatus: 'PENDING_ADMIN_APPROVAL',
                 riderStatus: 'WAITING_ADMIN',
                 assignedRider: null,
                 createdAt: Date.now()
@@ -586,9 +722,277 @@
                 return;
             }
             box.innerHTML = `
-                <div><strong>${escapeHtml(ord.itemTitle)}</strong> (x${ord.qty}) — Total: <strong>LKR ${ord.grandTotal}</strong> (Rider Fee: LKR ${ord.deliveryFee})</div>
+                <div><strong>${escapeHtml(ord.itemTitle)}</strong> (x${ord.qty}) — Total: <strong>LKR ${ord.grandTotal}</strong> (Rider Fee: LKR ${ord.deliveryFee}${ord.feeFinalized ? ' • Auto-Calculated on Arrival' : ' • Est.'})</div>
                 <div class="mt-1">Kitchen Status: <span class="text-amber-300 font-semibold">${escapeHtml(ord.adminStatus)}</span> | Rider Status: <span class="text-emerald-300 font-semibold">${escapeHtml(ord.riderStatus)}</span>${ord.assignedRider ? ` (${escapeHtml(ord.assignedRider.name)} - ${escapeHtml(ord.assignedRider.plate)})` : ''}</div>
             `;
+        }
+
+        function buildGoogleMapsRouteUrl(order) {
+            const origin = `${KITCHEN_COORDS.lat},${KITCHEN_COORDS.lng}`;
+            const destination = (order.customerCoords && order.customerCoords.lat && order.customerCoords.lng)
+                ? `${order.customerCoords.lat},${order.customerCoords.lng}`
+                : encodeURIComponent(`${order.customerAddress}, Sri Lanka`);
+            return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
+        }
+
+        // RIDER FUNCTIONS
+        function updateRiderGPS() {
+            const el = document.getElementById('gpsStatusText');
+            if (!navigator.geolocation) {
+                el.textContent = "GPS unavailable on this device.";
+                return;
+            }
+            navigator.geolocation.watchPosition((pos) => {
+                riderCurrentCoords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+                const straightKm = haversineStraightKm(KITCHEN_COORDS.lat, KITCHEN_COORDS.lng, pos.coords.latitude, pos.coords.longitude);
+                riderDistanceToKitchenKm = Number(straightKm.toFixed(2));
+                const inside = riderDistanceToKitchenKm <= MAX_RIDER_RADIUS_KM;
+                el.innerHTML = `Distance from kitchen: <strong class="text-white">${riderDistanceToKitchenKm} km</strong> • ${inside ? `<span class="text-emerald-400">Within ${MAX_RIDER_RADIUS_KM} km zone (Eligible)</span>` : `<span class="text-rose-400">Outside ${MAX_RIDER_RADIUS_KM} km zone</span>`}`;
+
+                // Auto-calculate & finalize rider fee when rider arrives at customer drop-off location
+                if (activeRiderId && ridersMap[activeRiderId] && ridersMap[activeRiderId].otpVerified) {
+                    Object.values(ordersMap).forEach((o) => {
+                        if (o.assignedRider && o.assignedRider.id === activeRiderId && !o.feeFinalized && o.riderStatus !== 'DELIVERED') {
+                            if (o.customerCoords && o.customerCoords.lat && o.customerCoords.lng) {
+                                const distToDropKm = haversineStraightKm(
+                                    pos.coords.latitude,
+                                    pos.coords.longitude,
+                                    o.customerCoords.lat,
+                                    o.customerCoords.lng
+                                );
+                                if (distToDropKm <= ARRIVAL_THRESHOLD_KM) {
+                                    const actualKm = calculateRoadAdjustedKm(
+                                        KITCHEN_COORDS.lat,
+                                        KITCHEN_COORDS.lng,
+                                        o.customerCoords.lat,
+                                        o.customerCoords.lng
+                                    );
+                                    const finalFee = computeDeliveryFee(actualKm);
+                                    db.ref('orders/' + o.id).update({
+                                        distanceKm: actualKm,
+                                        deliveryFee: finalFee,
+                                        grandTotal: (Number(o.foodTotal) || 0) + finalFee,
+                                        feeFinalized: true,
+                                        arrivedAt: Date.now()
+                                    });
+                                }
+                            }
+                        }
+                    });
+                }
+
+                renderRiderOrders();
+            }, () => {
+                el.textContent = "Enable location permission to verify proximity & auto-calculate arrival fee.";
+            }, { enableHighAccuracy: true });
+        }
+
+        function submitRiderRequest(e) {
+            e.preventDefault();
+            const phoneClean = document.getElementById('riderPhone').value.trim().replace(/\D/g, '');
+            const riderId = 'RIDER-' + phoneClean;
+            const payload = {
+                id: riderId,
+                name: document.getElementById('riderName').value.trim(),
+                phone: document.getElementById('riderPhone').value.trim(),
+                plate: document.getElementById('riderPlate').value.trim().toUpperCase(),
+                bikeModel: document.getElementById('riderBikeModel').value.trim(),
+                bikeColor: document.getElementById('riderBikeColor').value.trim(),
+                status: 'PENDING_ADMIN_APPROVAL',
+                otpCode: null,
+                otpVerified: false,
+                requestedAt: Date.now(),
+                securityNotice: ''
+            };
+            activeRiderId = riderId;
+            localStorage.setItem(SESSION_KEY, riderId);
+            db.ref('riders/' + riderId).set(payload);
+            alert('Request sent! Wait for Admin approval to receive your OTP.');
+        }
+
+        function evaluateRiderAuthState() {
+            const noticeBox = document.getElementById('securityAlertBox');
+            const authCard = document.getElementById('riderAuthCard');
+            const dashCard = document.getElementById('riderDashboardCard');
+            const otpSec = document.getElementById('otpVerifySection');
+            const otpInfo = document.getElementById('otpDispatchInfo');
+
+            if (!noticeBox) return;
+
+            if (!activeRiderId || !ridersMap[activeRiderId]) {
+                authCard.classList.remove('hidden');
+                dashCard.classList.add('hidden');
+                otpSec.classList.add('hidden');
+                return;
+            }
+
+            const r = ridersMap[activeRiderId];
+            document.getElementById('riderName').value = r.name || '';
+            document.getElementById('riderPhone').value = r.phone || '';
+            document.getElementById('riderPlate').value = r.plate || '';
+            document.getElementById('riderBikeModel').value = r.bikeModel || '';
+            document.getElementById('riderBikeColor').value = r.bikeColor || '';
+
+            if (r.securityNotice) {
+                noticeBox.classList.remove('hidden');
+                noticeBox.textContent = r.securityNotice;
+            } else {
+                noticeBox.classList.add('hidden');
+            }
+
+            if (r.status === 'WEEKLY_REVERIFY_REQUIRED') {
+                authCard.classList.remove('hidden');
+                dashCard.classList.add('hidden');
+                otpSec.classList.add('hidden');
+                return;
+            }
+
+            const expired = r.approvedAt && (Date.now() - r.approvedAt >= SEVEN_DAYS_MS);
+            if (r.otpVerified && !expired) {
+                authCard.classList.add('hidden');
+                dashCard.classList.remove('hidden');
+                document.getElementById('riderSessionBadge').textContent = `Verified Rider: ${r.name} (${r.plate}) • 100% Delivery Fee Earned`;
+                renderRiderOrders();
+            } else if (r.status === 'OTP_SENT' && r.otpCode) {
+                authCard.classList.remove('hidden');
+                dashCard.classList.add('hidden');
+                otpSec.classList.remove('hidden');
+                otpInfo.textContent = `Admin approved! OTP dispatched for ${r.phone}: ${r.otpCode}`;
+            } else {
+                authCard.classList.remove('hidden');
+                dashCard.classList.add('hidden');
+                otpSec.classList.add('hidden');
+            }
+        }
+
+        function verifyRiderOtp() {
+            if (!activeRiderId || !ridersMap[activeRiderId]) return;
+            const r = ridersMap[activeRiderId];
+            const entered = document.getElementById('riderOtpInput').value.trim();
+            if (r.otpCode && entered === String(r.otpCode)) {
+                db.ref('riders/' + activeRiderId).update({
+                    otpVerified: true,
+                    status: 'APPROVED_ACTIVE',
+                    approvedAt: Date.now(),
+                    securityNotice: ''
+                });
+            } else {
+                alert('Invalid OTP code.');
+            }
+        }
+
+        function logoutRiderLocal() {
+            localStorage.removeItem(SESSION_KEY);
+            activeRiderId = null;
+            evaluateRiderAuthState();
+        }
+
+        function renderRiderOrders() {
+            const listEl = document.getElementById('riderOrdersList');
+            if (!listEl || !activeRiderId || !ridersMap[activeRiderId]) return;
+            const rider = ridersMap[activeRiderId];
+            if (!rider.otpVerified) return;
+
+            const approvedOrders = Object.values(ordersMap).filter(o => o.adminStatus === 'APPROVED_FOR_RIDERS');
+            if (!approvedOrders.length) {
+                listEl.innerHTML = `<p class="text-xs text-slate-400">No kitchen-approved orders waiting right now.</p>`;
+                return;
+            }
+
+            const isNearEnough = riderDistanceToKitchenKm === null || riderDistanceToKitchenKm <= MAX_RIDER_RADIUS_KM;
+
+            listEl.innerHTML = approvedOrders.map(o => {
+                const isMine = o.assignedRider && o.assignedRider.id === rider.id;
+                const mapsUrl = buildGoogleMapsRouteUrl(o);
+
+                return `
+                <div class="bg-brand-dark border border-brand-border rounded-xl p-4 space-y-2.5 text-xs">
+                    <div class="flex justify-between items-start gap-2">
+                        <div>
+                            <p class="font-bold text-white">${escapeHtml(o.id)} • ${escapeHtml(o.itemTitle)} x${o.qty}</p>
+                            <p class="text-slate-400">Address: ${escapeHtml(o.customerAddress)} (${escapeHtml(o.distanceKm)} km)</p>
+                            <p class="text-[11px] text-amber-300 mt-0.5">Status: <strong>${escapeHtml(o.riderStatus)}</strong> ${o.feeFinalized ? '• <strong>Arrival Fee Calculated</strong>' : ''}</p>
+                        </div>
+                        <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold px-2.5 py-1 rounded-lg whitespace-nowrap">
+                            Fee: LKR ${escapeHtml(o.deliveryFee)} (100%)
+                        </span>
+                    </div>
+                    <p class="text-slate-300">Payment: ${escapeHtml(o.paymentMethod)} • Total Order: LKR ${escapeHtml(o.grandTotal)}</p>
+                    <div class="pt-1 flex flex-wrap gap-2">
+                        ${!o.assignedRider ? (
+                            isNearEnough
+                                ? `<button onclick="acceptOrder('${o.id}')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-lg cursor-pointer">Accept Order</button>`
+                                : `<span class="text-rose-400 font-semibold">Too far (${riderDistanceToKitchenKm} km > ${MAX_RIDER_RADIUS_KM} km limit)</span>`
+                        ) : isMine ? `
+                            <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="bg-sky-600 hover:bg-sky-500 text-white font-bold px-3.5 py-2 rounded-lg inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                                <span>Google Maps (Kitchen → Customer)</span>
+                            </a>
+                            ${o.riderStatus === 'ACCEPTED_BY_RIDER'
+                                ? `<button onclick="markParcelPickedUp('${o.id}')" class="bg-brand-orange hover:bg-amber-600 text-white font-bold px-3.5 py-2 rounded-lg cursor-pointer">Parcel Picked Up</button>`
+                                : ''}
+                            ${o.riderStatus !== 'DELIVERED'
+                                ? `<button onclick="markDelivered('${o.id}')" class="bg-amber-500 hover:bg-amber-400 text-black font-bold px-3.5 py-2 rounded-lg cursor-pointer">Mark Delivered & Finalize Fee</button>`
+                                : `<span class="text-emerald-400 font-bold py-2">Delivered</span>`}
+                        ` : `<span class="text-slate-500">Accepted by ${escapeHtml(o.assignedRider.name)}</span>`}
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function acceptOrder(orderId) {
+            const rider = ridersMap[activeRiderId];
+            if (!rider || !rider.otpVerified) return;
+            const order = ordersMap[orderId];
+            const mapsUrl = order ? buildGoogleMapsRouteUrl(order) : '';
+
+            db.ref('orders/' + orderId).update({
+                riderStatus: 'ACCEPTED_BY_RIDER',
+                assignedRider: {
+                    id: rider.id,
+                    name: rider.name,
+                    phone: rider.phone,
+                    plate: rider.plate,
+                    bikeModel: rider.bikeModel,
+                    bikeColor: rider.bikeColor
+                }
+            }).then(() => {
+                if (mapsUrl) {
+                    window.open(mapsUrl, '_blank', 'noopener,noreferrer');
+                }
+            });
+        }
+
+        function markParcelPickedUp(orderId) {
+            db.ref('orders/' + orderId).update({
+                riderStatus: 'PARCEL_PICKED_UP',
+                pickedUpAt: Date.now()
+            });
+        }
+
+        function markDelivered(orderId) {
+            const o = ordersMap[orderId];
+            if (!o) return;
+
+            let finalKm = Number(o.distanceKm) || 1;
+            if (riderCurrentCoords && o.customerCoords && o.customerCoords.lat && o.customerCoords.lng) {
+                finalKm = calculateRoadAdjustedKm(
+                    KITCHEN_COORDS.lat,
+                    KITCHEN_COORDS.lng,
+                    o.customerCoords.lat,
+                    o.customerCoords.lng
+                );
+            }
+            const finalFee = computeDeliveryFee(finalKm);
+
+            db.ref('orders/' + orderId).update({
+                riderStatus: 'DELIVERED',
+                distanceKm: finalKm,
+                deliveryFee: finalFee,
+                grandTotal: (Number(o.foodTotal) || 0) + finalFee,
+                feeFinalized: true,
+                deliveredAt: Date.now()
+            });
         }
 
         // ADMIN FUNCTIONS
