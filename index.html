@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A&D FOODS | Authentic Sri Lankan Cuisine</title>
     <meta name="google-site-verification" content="51nkjJSgHakoFaGtzLbRmyR5e6KUE-mHm_EMQP1Fwco" />
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    
+
     <!-- FIREBASE COMPAT SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
@@ -39,7 +36,7 @@
     </script>
     <style>
         .glass-header {
-            background: rgba(13, 17, 23, 0.85);
+            background: rgba(13, 17, 23, 0.88);
             backdrop-filter: blur(12px);
         }
     </style>
@@ -48,100 +45,201 @@
 
     <!-- NAVIGATION BAR -->
     <header class="fixed top-0 left-0 w-full z-40 glass-header border-b border-brand-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2">
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-brand-orange to-brand-gold p-[2px] shadow-lg shadow-brand-orange/20 transition-transform group-hover:scale-105">
-                    <div class="w-full h-full bg-brand-dark rounded-full flex items-center justify-center font-serif font-bold text-brand-gold text-lg">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-orange to-brand-gold p-[2px] shadow-lg shadow-brand-orange/20 transition-transform group-hover:scale-105">
+                    <div class="w-full h-full bg-brand-dark rounded-full flex items-center justify-center font-serif font-bold text-brand-gold text-base">
                         A&D
                     </div>
                 </div>
                 <div>
-                    <span class="block font-serif text-xl font-bold tracking-tight text-white group-hover:text-brand-gold transition-colors">A&D FOODS</span>
+                    <span class="block font-serif text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-brand-gold transition-colors">A&D FOODS</span>
                     <span class="block text-[10px] tracking-widest text-slate-400 uppercase font-semibold">Authentic Sri Lankan</span>
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300">
+            <nav class="hidden md:flex items-center gap-7 font-medium text-sm text-slate-300">
                 <a href="#home" class="hover:text-brand-gold transition-colors">Home</a>
                 <a href="#menu" class="hover:text-brand-gold transition-colors">Menu</a>
-                <a href="#catering" class="hover:text-brand-gold transition-colors">Special Catering</a>
-                <a href="#about" class="hover:text-brand-gold transition-colors">Our Story</a>
-                <a href="#contact" class="hover:text-brand-gold transition-colors">Contact Us</a>
+                <a href="#track-order" class="hover:text-brand-gold transition-colors">Track Order</a>
             </nav>
 
-            <div class="flex items-center gap-4">
-                <button onclick="openAdminModal()" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors bg-brand-card hover:bg-slate-800 px-3 py-2 rounded-lg border border-brand-border cursor-pointer">
-                    <i class="fa-solid fa-lock"></i>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="rider.html" class="flex items-center gap-1.5 text-xs font-semibold text-amber-300 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 px-3 py-2 rounded-lg border border-amber-500/30 transition-all">
+                    <i class="fa-solid fa-motorcycle"></i>
+                    <span>Rider Portal</span>
+                </a>
+                <button onclick="openAdminModal()" class="flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition-colors bg-brand-card hover:bg-slate-800 px-3 py-2 rounded-lg border border-brand-border cursor-pointer">
+                    <i class="fa-solid fa-lock text-brand-gold"></i>
                     <span>Admin</span>
                 </button>
-                <a id="navWhatsappBtn" href="#" target="_blank" class="hidden sm:flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-lg shadow-emerald-600/20 active:scale-95">
+                <a id="navWhatsappBtn" href="#" target="_blank" class="hidden lg:flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all">
                     <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>Order via WhatsApp</span>
+                    <span>WhatsApp</span>
                 </a>
             </div>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <section id="home" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex-1 flex items-center">
+    <section id="home" class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex-1 flex items-center">
         <div class="grid md:grid-cols-2 gap-12 items-center w-full">
             <div class="space-y-6">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-xs font-semibold">
                     <i class="fa-solid fa-pepper-hot"></i>
-                    <span>100% FRESH & AUTHENTIC INGREDIENTS</span>
+                    <span>LIVE KITCHEN AVAILABILITY & VERIFIED RIDERS</span>
                 </div>
                 <h1 class="text-4xl sm:text-6xl font-serif font-bold text-white leading-tight">
                     Authentic Sri Lankan <span class="bg-gradient-to-r from-brand-orange to-brand-gold bg-clip-text text-transparent">Flavors, Made Fresh Daily!</span>
                 </h1>
                 <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
-                    Taste the true comforting flavors of home-cooked Idiyappam, Kiribath, Hot Roti, Lawariya, and custom Rice & Curry catered just for you.
+                    Check live availability before ordering Idiyappam, Kiribath, Hot Roti, and Lawariya. Every order is confirmed by our kitchen first, then delivered by verified local riders.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-4">
+                <div class="flex flex-wrap gap-4 pt-2">
                     <a href="#menu" class="bg-gradient-to-r from-brand-orange to-amber-600 text-white font-semibold px-6 py-3.5 rounded-xl hover:shadow-lg hover:shadow-brand-orange/20 transition-all flex items-center gap-2">
-                        <span>Explore Menu</span>
+                        <span>Explore Live Menu</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                     <a id="heroCustomOrderBtn" href="#" target="_blank" class="bg-brand-card border border-brand-border hover:border-slate-500 text-slate-200 font-semibold px-6 py-3.5 rounded-xl transition-all flex items-center gap-2">
                         <i class="fa-solid fa-calendar-check text-brand-gold"></i>
-                        <span>Place Custom Order</span>
+                        <span>Custom Catering</span>
                     </a>
                 </div>
             </div>
             <div class="relative">
-                <div class="w-full h-[350px] sm:h-[450px] rounded-3xl overflow-hidden border border-brand-border bg-brand-card shadow-2xl relative group">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Sri Lankan Cuisine" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80"></div>
+                <div class="w-full h-[340px] sm:h-[430px] rounded-3xl overflow-hidden border border-brand-border bg-brand-card shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Sri Lankan Cuisine" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- MENU SECTION -->
-    <section id="menu" class="py-20 bg-brand-card/50 border-y border-brand-border">
+    <section id="menu" class="py-16 bg-brand-card/50 border-y border-brand-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">Our Daily Specialties</h2>
-                <p class="text-slate-400 text-sm">Prepared with love using traditional recipes and pure Sri Lankan spices.</p>
+                <p class="text-slate-400 text-sm">Availability status is shown live before you place an order.</p>
             </div>
 
             <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="col-span-full text-center py-10 text-slate-400">Loading menu from live database...</div>
+                <div class="col-span-full text-center py-10 text-slate-400">Loading live menu...</div>
             </div>
         </div>
     </section>
 
+    <!-- CUSTOMER ORDER TRACKER -->
+    <section id="track-order" class="py-14 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
+        <div class="bg-brand-card border border-brand-border rounded-2xl p-6 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-white">Track Your Order Status</h3>
+                    <p class="text-xs text-slate-400">Enter your Order ID (e.g., ORD-1732440000) to see kitchen & rider updates.</p>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" id="trackOrderIdInput" placeholder="Order ID..." class="bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-brand-gold">
+                    <button onclick="trackCustomerOrder()" class="bg-brand-orange hover:bg-amber-600 text-white text-xs font-bold px-4 py-2 rounded-xl cursor-pointer">Track</button>
+                </div>
+            </div>
+            <div id="trackOrderResult" class="text-xs text-slate-300 bg-brand-dark/60 border border-brand-border rounded-xl p-4 hidden"></div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
-    <footer class="bg-brand-dark border-t border-brand-border py-12 text-slate-500 text-xs">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+    <footer class="bg-brand-dark border-t border-brand-border py-10 text-slate-500 text-xs">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
             <p class="font-serif text-lg text-slate-300 font-bold">A&D FOODS</p>
-            <p>© 2026 A&D Foods. All Rights Reserved. Delivered Fresh to Your Doorstep.</p>
+            <p>© 2026 A&D Foods. All Rights Reserved. • <a href="rider.html" class="text-amber-400 hover:underline">Rider Portal</a></p>
         </div>
     </footer>
 
+    <!-- CUSTOMER ORDER MODAL -->
+    <div id="orderModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
+            <div class="p-5 border-b border-brand-border flex items-center justify-between bg-slate-900/60">
+                <div>
+                    <h3 id="orderModalTitle" class="font-serif font-bold text-lg text-white">Place Food Order</h3>
+                    <p id="orderModalAvailBadge" class="text-[11px] font-semibold mt-0.5"></p>
+                </div>
+                <button onclick="closeOrderModal()" class="text-slate-400 hover:text-white p-2 rounded-lg cursor-pointer">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <form onsubmit="submitCustomerOrder(event)" class="p-5 overflow-y-auto space-y-4 text-xs sm:text-sm">
+                <input type="hidden" id="orderItemId">
+                <input type="hidden" id="orderItemTitle">
+                <input type="hidden" id="orderItemUnitPrice">
+                <input type="hidden" id="orderCalcDistanceKm" value="1">
+                <input type="hidden" id="orderCalcDeliveryFee" value="100">
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Quantity *</label>
+                        <input type="number" id="orderQty" min="1" value="1" required oninput="recalculateOrderSummary()" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Your Name *</label>
+                        <input type="text" id="custName" required placeholder="Full name" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2.5 text-white">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Phone Number *</label>
+                        <input type="tel" id="custPhone" required placeholder="0771234567" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2.5 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Payment Method</label>
+                        <select id="custPayment" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2.5 text-white">
+                            <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
+                            <option value="Bank Transfer / Slip">Bank Transfer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="text-xs text-slate-400">Delivery Address *</label>
+                        <button type="button" onclick="detectCustomerGPS()" class="text-[11px] font-semibold text-amber-400 hover:underline cursor-pointer">
+                            <i class="fa-solid fa-location-crosshairs mr-1"></i>Use GPS Distance
+                        </button>
+                    </div>
+                    <textarea id="custAddress" rows="2" required placeholder="Street, town / landmark..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-3.5 py-2 text-white"></textarea>
+                </div>
+
+                <!-- LIVE FEE BREAKDOWN (100% Delivery Fee to Rider) -->
+                <div class="bg-brand-dark border border-brand-border rounded-xl p-4 space-y-1.5 text-xs">
+                    <div class="flex justify-between text-slate-300">
+                        <span>Food Subtotal:</span>
+                        <span id="summaryFoodTotal">LKR 0</span>
+                    </div>
+                    <div class="flex justify-between text-amber-300">
+                        <span id="summaryDeliveryLabel">Rider Delivery Fee (100% to Rider):</span>
+                        <span id="summaryDeliveryFee">LKR 0</span>
+                    </div>
+                    <div class="flex justify-between font-bold text-white text-sm pt-1.5 border-t border-brand-border">
+                        <span>Total Payable:</span>
+                        <span id="summaryGrandTotal">LKR 0</span>
+                    </div>
+                </div>
+
+                <p class="text-[11px] text-slate-400">
+                    <i class="fa-solid fa-circle-info text-brand-gold mr-1"></i>
+                    Order goes to Admin first to confirm food availability, then becomes visible to verified nearby riders.
+                </p>
+
+                <button type="submit" id="submitOrderBtn" class="w-full bg-gradient-to-r from-brand-orange to-amber-600 hover:opacity-95 text-white font-bold py-3 rounded-xl transition-all cursor-pointer">
+                    Send Order for Kitchen Approval
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- ADMIN MODAL -->
     <div id="adminModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-brand-card border border-brand-border w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-            <div class="p-6 border-b border-brand-border flex items-center justify-between bg-slate-900/50">
+        <div class="bg-brand-card border border-brand-border w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+            <div class="p-5 border-b border-brand-border flex items-center justify-between bg-slate-900/60">
                 <h3 class="font-bold text-lg text-white flex items-center gap-2">
                     <i class="fa-solid fa-sliders text-brand-gold"></i>
                     <span>Admin Control Panel</span>
@@ -151,49 +249,81 @@
                 </button>
             </div>
 
-            <div class="p-6 overflow-y-auto space-y-8 flex-1">
-                <div id="adminLoginView" class="space-y-4">
-                    <p class="text-sm text-slate-400">Please enter the admin password to access controls:</p>
-                    <div class="space-y-2">
-                        <input type="password" id="adminPasswordInput" placeholder="Enter Password" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold">
-                        <p id="loginError" class="text-rose-500 text-xs hidden">Invalid password. Please try again.</p>
-                    </div>
+            <div class="p-5 overflow-y-auto space-y-6 flex-1">
+                <div id="adminLoginView" class="space-y-4 max-w-md mx-auto py-4">
+                    <p class="text-sm text-slate-400">Enter admin password to manage menu availability, orders, and rider approvals:</p>
+                    <input type="password" id="adminPasswordInput" placeholder="Enter Password" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold">
+                    <p id="loginError" class="text-rose-500 text-xs hidden">Invalid password. Please try again.</p>
                     <button onclick="loginAdmin()" class="w-full bg-brand-gold hover:bg-amber-500 text-black font-bold py-3 rounded-xl transition-all text-sm cursor-pointer">
                         Login
                     </button>
                 </div>
 
-                <div id="adminControlsView" class="hidden space-y-8">
-                    <div class="bg-brand-dark/50 p-4 rounded-xl border border-brand-border space-y-3">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">GLOBAL WHATSAPP NUMBER</label>
-                        <div class="flex gap-2">
-                            <input type="text" id="adminPhoneInput" placeholder="94771234567" class="flex-1 bg-brand-dark border border-brand-border rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-gold">
-                            <button onclick="savePhoneNumber()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-xl text-sm transition-all cursor-pointer">
-                                Save Number
-                            </button>
-                        </div>
+                <div id="adminControlsView" class="hidden space-y-6">
+                    <!-- ADMIN TABS -->
+                    <div class="flex flex-wrap gap-2 border-b border-brand-border pb-3">
+                        <button onclick="switchAdminTab('orders')" id="tabOrdersBtn" class="px-4 py-2 rounded-xl text-xs font-bold bg-brand-orange text-white cursor-pointer">1. Incoming Orders</button>
+                        <button onclick="switchAdminTab('riders')" id="tabRidersBtn" class="px-4 py-2 rounded-xl text-xs font-semibold bg-brand-dark text-slate-300 border border-brand-border cursor-pointer">2. Rider Requests & OTP</button>
+                        <button onclick="switchAdminTab('menu')" id="tabMenuBtn" class="px-4 py-2 rounded-xl text-xs font-semibold bg-brand-dark text-slate-300 border border-brand-border cursor-pointer">3. Menu & Rates</button>
                     </div>
 
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <h4 class="font-bold text-sm text-white">Manage Menu Items</h4>
-                            <button onclick="addNewMenuItem()" class="bg-brand-orange hover:bg-amber-600 text-white text-xs font-bold px-3 py-2 rounded-lg transition-all flex items-center gap-1 cursor-pointer">
-                                <i class="fa-solid fa-plus"></i>
-                                <span>Add New Item</span>
-                            </button>
+                    <!-- TAB 1: ORDERS -->
+                    <div id="adminTabOrders" class="space-y-3">
+                        <h4 class="font-bold text-sm text-white">Customer Orders (Approve Food Availability Before Riders See)</h4>
+                        <div id="adminOrdersList" class="space-y-3"></div>
+                    </div>
+
+                    <!-- TAB 2: RIDERS -->
+                    <div id="adminTabRiders" class="hidden space-y-3">
+                        <h4 class="font-bold text-sm text-white">Rider Verification Requests & Weekly Security Check</h4>
+                        <p class="text-xs text-slate-400">Approving sends a 6-digit OTP for rider login. Sessions expire every 7 days for security.</p>
+                        <div id="adminRidersList" class="space-y-3"></div>
+                    </div>
+
+                    <!-- TAB 3: MENU & DELIVERY RATES -->
+                    <div id="adminTabMenu" class="hidden space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-4 bg-brand-dark/60 p-4 rounded-xl border border-brand-border">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Global WhatsApp Number</label>
+                                <div class="flex gap-2">
+                                    <input type="text" id="adminPhoneInput" placeholder="94771234567" class="flex-1 bg-brand-dark border border-brand-border rounded-xl px-3 py-2 text-xs text-white">
+                                    <button onclick="savePhoneNumber()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3.5 py-2 rounded-xl text-xs cursor-pointer">Save</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Rider Fee Rate (Base LKR + Per KM)</label>
+                                <div class="flex gap-2">
+                                    <input type="number" id="rateBaseInput" placeholder="Base (e.g. 100)" class="w-1/2 bg-brand-dark border border-brand-border rounded-xl px-3 py-2 text-xs text-white">
+                                    <input type="number" id="ratePerKmInput" placeholder="Per KM (e.g. 60)" class="w-1/2 bg-brand-dark border border-brand-border rounded-xl px-3 py-2 text-xs text-white">
+                                    <button onclick="saveDeliveryRates()" class="bg-brand-gold hover:bg-amber-500 text-black font-bold px-3.5 py-2 rounded-xl text-xs cursor-pointer">Save</button>
+                                </div>
+                            </div>
                         </div>
-                        <div id="adminMenuList" class="space-y-3"></div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-sm text-white">Manage Menu Items & Availability</h4>
+                                <button onclick="addNewMenuItem()" class="bg-brand-orange hover:bg-amber-600 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1 cursor-pointer">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Add New Item</span>
+                                </button>
+                            </div>
+                            <div id="adminMenuList" class="space-y-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT LOGIC -->
     <script>
         const PERMANENT_ADMIN_PASSWORD = "SarojaFoods@123#";
         const fallbackImage = "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80";
         const defaultPhoneNumber = "94771234567";
+        const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+
+        // Kitchen reference coordinates (update if needed)
+        const KITCHEN_COORDS = { lat: 7.2906, lng: 80.6337 };
 
         const firebaseConfig = {
             apiKey: "AIzaSyDKzNie7S8N6Hk_WAOvzooj0AQXKFO09Ps",
@@ -206,18 +336,17 @@
             measurementId: "G-QEJ8KB1JN1"
         };
 
-        // Initialize Firebase Compat
-        firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
         const db = firebase.database();
-
-        let currentMenu = [];
-        let currentPhone = defaultPhoneNumber;
 
         const defaultMenuItems = [
             {
                 id: 1,
                 title: "Idiyappam (String Hoppers) Set",
                 price: "650",
+                available: true,
                 description: "15 String hoppers served with spicy Kiri Hodi, Pol Sambol, and Dhal Curry.",
                 image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80"
             },
@@ -225,6 +354,7 @@
                 id: 2,
                 title: "Special Kiribath (Milk Rice)",
                 price: "500",
+                available: true,
                 description: "Creamy Kiribath served with traditional spicy Lunu Miris and Seeni Sambol.",
                 image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80"
             },
@@ -232,6 +362,7 @@
                 id: 3,
                 title: "Freshly Made Hot Roti",
                 price: "400",
+                available: true,
                 description: "4 Hot coconut rotis served with spicy kattasambol and dhal curry.",
                 image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80"
             },
@@ -239,16 +370,22 @@
                 id: 4,
                 title: "Delicious Sweet Lawariya",
                 price: "350",
+                available: false,
                 description: "Sweet stuffed string hopper rolls with caramelised grated coconut filling (5 Pcs).",
                 image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80"
             }
         ];
 
-        // Realtime Sync Listener for Menu
-        db.ref('menu').on('value', (snapshot) => {
-            const data = snapshot.val();
+        let currentMenu = [];
+        let currentPhone = defaultPhoneNumber;
+        let rateConfig = { baseFee: 100, perKm: 60 };
+        let ordersMap = {};
+        let ridersMap = {};
+
+        db.ref('menu').on('value', (snap) => {
+            const data = snap.val();
             if (data) {
-                currentMenu = data;
+                currentMenu = Array.isArray(data) ? data.filter(Boolean) : Object.values(data).filter(Boolean);
             } else {
                 currentMenu = defaultMenuItems;
                 db.ref('menu').set(defaultMenuItems);
@@ -257,74 +394,204 @@
             renderAdminMenuList();
         });
 
-        // Realtime Sync Listener for Phone
-        db.ref('phone').on('value', (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                currentPhone = data;
-            } else {
-                currentPhone = defaultPhoneNumber;
-                db.ref('phone').set(defaultPhoneNumber);
-            }
+        db.ref('phone').on('value', (snap) => {
+            currentPhone = snap.val() || defaultPhoneNumber;
             renderMenu();
         });
+
+        db.ref('deliveryRates').on('value', (snap) => {
+            if (snap.val()) {
+                rateConfig = {
+                    baseFee: Number(snap.val().baseFee) || 100,
+                    perKm: Number(snap.val().perKm) || 60
+                };
+            }
+            const bInput = document.getElementById('rateBaseInput');
+            const pInput = document.getElementById('ratePerKmInput');
+            if (bInput && document.activeElement !== bInput) bInput.value = rateConfig.baseFee;
+            if (pInput && document.activeElement !== pInput) pInput.value = rateConfig.perKm;
+        });
+
+        db.ref('orders').on('value', (snap) => {
+            ordersMap = snap.val() || {};
+            renderAdminOrders();
+        });
+
+        db.ref('riders').on('value', (snap) => {
+            ridersMap = snap.val() || {};
+            // Auto-expire sessions older than 7 days
+            Object.entries(ridersMap).forEach(([id, r]) => {
+                if (r && r.status === 'APPROVED_ACTIVE' && r.approvedAt && (Date.now() - r.approvedAt >= SEVEN_DAYS_MS)) {
+                    db.ref('riders/' + id).update({
+                        status: 'WEEKLY_REVERIFY_REQUIRED',
+                        otpCode: null,
+                        securityNotice: 'Weekly security check: your 7-day rider pass expired. Please re-request approval to receive a new OTP.'
+                    });
+                }
+            });
+            renderAdminRiders();
+        });
+
+        function isItemAvailable(item) {
+            return item.available !== false;
+        }
 
         function renderMenu() {
             const menuGrid = document.getElementById('menuGrid');
             if (!menuGrid) return;
 
-            menuGrid.innerHTML = currentMenu.map(item => `
-                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden hover:border-slate-600 transition-all group flex flex-col justify-between">
+            menuGrid.innerHTML = currentMenu.map(item => {
+                const avail = isItemAvailable(item);
+                return `
+                <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden hover:border-slate-600 transition-all group flex flex-col justify-between ${avail ? '' : 'opacity-80'}">
                     <div>
                         <div class="h-48 overflow-hidden relative">
-                            <img src="${(item.image || '').trim()}" alt="${item.title}" onerror="this.src='${fallbackImage}'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="${(item.image || '').trim()}" alt="${escapeHtml(item.title)}" onerror="this.src='${fallbackImage}'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 text-[11px] font-bold px-3 py-1 rounded-full ${avail ? 'bg-emerald-600/90 text-white' : 'bg-rose-600/90 text-white'}">
+                                ${avail ? 'Available Now' : 'Sold Out / Unavailable'}
+                            </span>
                         </div>
                         <div class="p-6 space-y-2">
                             <div class="flex justify-between items-start gap-2">
-                                <h3 class="font-bold text-lg text-white font-serif">${item.title}</h3>
-                                <span class="bg-brand-orange/10 text-brand-orange font-bold text-xs px-2.5 py-1 rounded-lg border border-brand-orange/20 whitespace-nowrap">LKR ${item.price}</span>
+                                <h3 class="font-bold text-lg text-white font-serif">${escapeHtml(item.title)}</h3>
+                                <span class="bg-brand-orange/10 text-brand-orange font-bold text-xs px-2.5 py-1 rounded-lg border border-brand-orange/20 whitespace-nowrap">LKR ${escapeHtml(item.price)}</span>
                             </div>
-                            <p class="text-slate-400 text-xs leading-relaxed">${item.description}</p>
+                            <p class="text-slate-400 text-xs leading-relaxed">${escapeHtml(item.description)}</p>
                         </div>
                     </div>
-                    <div class="p-6 pt-0">
-                        <a href="https://wa.me/${currentPhone}?text=${encodeURIComponent('Hello A&D Foods, I would like to order: ' + item.title)}" target="_blank" class="w-full bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white border border-brand-border hover:border-emerald-500 font-semibold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-sm"></i>
-                            <span>Order via WhatsApp</span>
-                        </a>
+                    <div class="p-6 pt-0 space-y-2">
+                        ${avail
+                            ? `<button onclick="openOrderModal(${item.id})" class="w-full bg-gradient-to-r from-brand-orange to-amber-600 hover:opacity-95 text-white font-bold text-xs py-2.5 rounded-xl transition-all cursor-pointer">Order Now</button>`
+                            : `<button disabled class="w-full bg-slate-800 text-slate-500 font-bold text-xs py-2.5 rounded-xl border border-brand-border cursor-not-allowed">Currently Unavailable</button>`
+                        }
                     </div>
-                </div>
-            `).join('');
+                </div>`;
+            }).join('');
 
-            document.getElementById('navWhatsappBtn').href = `https://wa.me/${currentPhone}?text=${encodeURIComponent('Hello A&D Foods, I would like to make an inquiry.')}`;
-            document.getElementById('heroCustomOrderBtn').href = `https://wa.me/${currentPhone}?text=${encodeURIComponent('Hello A&D Foods, I would like to discuss a custom order.')}`;
+            const navWa = document.getElementById('navWhatsappBtn');
+            const heroWa = document.getElementById('heroCustomOrderBtn');
+            if (navWa) navWa.href = `https://wa.me/${currentPhone}?text=${encodeURIComponent('Hello A&D Foods, I would like to make an inquiry.')}`;
+            if (heroWa) heroWa.href = `https://wa.me/${currentPhone}?text=${encodeURIComponent('Hello A&D Foods, I would like to discuss a custom order.')}`;
         }
 
-        function renderAdminMenuList() {
-            const list = document.getElementById('adminMenuList');
-            if (!list) return;
+        function openOrderModal(itemId) {
+            const item = currentMenu.find(i => String(i.id) === String(itemId));
+            if (!item || !isItemAvailable(item)) return;
 
-            list.innerHTML = currentMenu.map(item => `
-                <div class="bg-brand-dark p-3 rounded-xl border border-brand-border flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3">
-                        <img src="${(item.image || '').trim()}" onerror="this.src='${fallbackImage}'" class="w-10 h-10 rounded-lg object-cover">
-                        <div>
-                            <p class="text-xs font-bold text-white">${item.title}</p>
-                            <p class="text-[10px] text-slate-400">LKR ${item.price}</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="editMenuItem(${item.id})" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1.5 rounded-lg border border-brand-border cursor-pointer">
-                            <i class="fa-solid fa-pen"></i> Edit
-                        </button>
-                        <button onclick="deleteMenuItem(${item.id})" class="text-xs bg-rose-500/20 hover:bg-rose-500 text-rose-400 hover:text-white px-2.5 py-1.5 rounded-lg border border-rose-500/30 cursor-pointer">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
+            document.getElementById('orderItemId').value = item.id;
+            document.getElementById('orderItemTitle').value = item.title;
+            document.getElementById('orderItemUnitPrice').value = Number(item.price) || 0;
+            document.getElementById('orderModalTitle').textContent = `Order: ${item.title}`;
+            document.getElementById('orderModalAvailBadge').innerHTML = `<span class="text-emerald-400"><i class="fa-solid fa-check-circle mr-1"></i>Available in Kitchen</span>`;
+            document.getElementById('orderQty').value = 1;
+            document.getElementById('orderCalcDistanceKm').value = 1;
+            recalculateOrderSummary();
+            document.getElementById('orderModal').classList.remove('hidden');
         }
 
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.add('hidden');
+        }
+
+        function calculateDistanceKm(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) ** 2 +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon / 2) ** 2;
+            const straightKm = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return Math.max(1, Number((straightKm * 1.3).toFixed(1)));
+        }
+
+        function computeDeliveryFee(km) {
+            const extraKm = Math.max(0, Number(km) - 1);
+            return Math.round(rateConfig.baseFee + extraKm * rateConfig.perKm);
+        }
+
+        function detectCustomerGPS() {
+            if (!navigator.geolocation) return alert('GPS not supported in this browser.');
+            navigator.geolocation.getCurrentPosition((pos) => {
+                const km = calculateDistanceKm(KITCHEN_COORDS.lat, KITCHEN_COORDS.lng, pos.coords.latitude, pos.coords.longitude);
+                document.getElementById('orderCalcDistanceKm').value = km;
+                recalculateOrderSummary();
+            }, () => alert('Could not get GPS location. Default 1 km estimate applied.'));
+        }
+
+        function recalculateOrderSummary() {
+            const qty = Math.max(1, Number(document.getElementById('orderQty').value) || 1);
+            const unit = Number(document.getElementById('orderItemUnitPrice').value) || 0;
+            const km = Math.max(1, Number(document.getElementById('orderCalcDistanceKm').value) || 1);
+            const foodTotal = qty * unit;
+            const delFee = computeDeliveryFee(km);
+            document.getElementById('orderCalcDeliveryFee').value = delFee;
+
+            document.getElementById('summaryFoodTotal').textContent = `LKR ${foodTotal}`;
+            document.getElementById('summaryDeliveryLabel').textContent = `Rider Delivery Fee (${km} km • 100% to Rider):`;
+            document.getElementById('summaryDeliveryFee').textContent = `LKR ${delFee}`;
+            document.getElementById('summaryGrandTotal').textContent = `LKR ${foodTotal + delFee}`;
+        }
+
+        function submitCustomerOrder(e) {
+            e.preventDefault();
+            const itemId = document.getElementById('orderItemId').value;
+            const latestItem = currentMenu.find(i => String(i.id) === String(itemId));
+            if (!latestItem || !isItemAvailable(latestItem)) {
+                alert('Sorry, this item just became unavailable.');
+                closeOrderModal();
+                return;
+            }
+
+            const qty = Math.max(1, Number(document.getElementById('orderQty').value) || 1);
+            const unitPrice = Number(latestItem.price) || 0;
+            const foodTotal = qty * unitPrice;
+            const distanceKm = Number(document.getElementById('orderCalcDistanceKm').value) || 1;
+            const deliveryFee = computeDeliveryFee(distanceKm);
+
+            const orderId = 'ORD-' + Date.now();
+            const orderData = {
+                id: orderId,
+                itemTitle: latestItem.title,
+                qty,
+                foodTotal,
+                distanceKm,
+                deliveryFee, // 100% goes to rider, zero profit to store
+                grandTotal: foodTotal + deliveryFee,
+                customerName: document.getElementById('custName').value.trim(),
+                customerPhone: document.getElementById('custPhone').value.trim(),
+                customerAddress: document.getElementById('custAddress').value.trim(),
+                paymentMethod: document.getElementById('custPayment').value,
+                adminStatus: 'PENDING_ADMIN_APPROVAL', // Riders only see once APPROVED_FOR_RIDERS
+                riderStatus: 'WAITING_ADMIN',
+                assignedRider: null,
+                createdAt: Date.now()
+            };
+
+            db.ref('orders/' + orderId).set(orderData).then(() => {
+                closeOrderModal();
+                const box = document.getElementById('trackOrderResult');
+                document.getElementById('trackOrderIdInput').value = orderId;
+                box.classList.remove('hidden');
+                box.innerHTML = `<strong class="text-emerald-400">Order Submitted!</strong> Your Order ID is <span class="font-mono text-white">${orderId}</span>. Waiting for Admin to confirm food availability first.`;
+            });
+        }
+
+        function trackCustomerOrder() {
+            const id = document.getElementById('trackOrderIdInput').value.trim();
+            const box = document.getElementById('trackOrderResult');
+            box.classList.remove('hidden');
+            const ord = ordersMap[id];
+            if (!ord) {
+                box.innerHTML = `<span class="text-rose-400">Order not found.</span>`;
+                return;
+            }
+            box.innerHTML = `
+                <div><strong>${escapeHtml(ord.itemTitle)}</strong> (x${ord.qty}) — Total: <strong>LKR ${ord.grandTotal}</strong> (Rider Fee: LKR ${ord.deliveryFee})</div>
+                <div class="mt-1">Kitchen Status: <span class="text-amber-300 font-semibold">${escapeHtml(ord.adminStatus)}</span> | Rider Status: <span class="text-emerald-300 font-semibold">${escapeHtml(ord.riderStatus)}</span>${ord.assignedRider ? ` (${escapeHtml(ord.assignedRider.name)} - ${escapeHtml(ord.assignedRider.plate)})` : ''}</div>
+            `;
+        }
+
+        // ADMIN FUNCTIONS
         function openAdminModal() {
             document.getElementById('adminModal').classList.remove('hidden');
             document.getElementById('adminLoginView').classList.remove('hidden');
@@ -343,24 +610,158 @@
                 document.getElementById('adminLoginView').classList.add('hidden');
                 document.getElementById('adminControlsView').classList.remove('hidden');
                 document.getElementById('adminPhoneInput').value = currentPhone;
+                document.getElementById('rateBaseInput').value = rateConfig.baseFee;
+                document.getElementById('ratePerKmInput').value = rateConfig.perKm;
+                renderAdminOrders();
+                renderAdminRiders();
                 renderAdminMenuList();
             } else {
                 document.getElementById('loginError').classList.remove('hidden');
             }
         }
 
+        function switchAdminTab(tab) {
+            ['orders', 'riders', 'menu'].forEach(t => {
+                document.getElementById('adminTab' + t.charAt(0).toUpperCase() + t.slice(1)).classList.toggle('hidden', t !== tab);
+                const btn = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn');
+                btn.className = t === tab
+                    ? 'px-4 py-2 rounded-xl text-xs font-bold bg-brand-orange text-white cursor-pointer'
+                    : 'px-4 py-2 rounded-xl text-xs font-semibold bg-brand-dark text-slate-300 border border-brand-border cursor-pointer';
+            });
+        }
+
+        function approveOrderForRiders(orderId) {
+            db.ref('orders/' + orderId).update({
+                adminStatus: 'APPROVED_FOR_RIDERS',
+                riderStatus: 'OPEN_FOR_NEARBY_RIDERS'
+            });
+        }
+
+        function rejectOrderAdmin(orderId) {
+            db.ref('orders/' + orderId).update({
+                adminStatus: 'UNAVAILABLE_REJECTED',
+                riderStatus: 'CANCELLED'
+            });
+        }
+
+        function renderAdminOrders() {
+            const el = document.getElementById('adminOrdersList');
+            if (!el) return;
+            const list = Object.values(ordersMap).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+            if (!list.length) {
+                el.innerHTML = `<p class="text-xs text-slate-400">No orders yet.</p>`;
+                return;
+            }
+            el.innerHTML = list.map(o => `
+                <div class="bg-brand-dark border border-brand-border rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                    <div class="space-y-1">
+                        <p class="font-bold text-white">${escapeHtml(o.id)} • ${escapeHtml(o.itemTitle)} x${o.qty}</p>
+                        <p class="text-slate-400">Customer: ${escapeHtml(o.customerName)} (${escapeHtml(o.customerPhone)}) • ${escapeHtml(o.customerAddress)}</p>
+                        <p class="text-amber-300">Food: LKR ${o.foodTotal} | Rider Fee (${o.distanceKm} km): LKR ${o.deliveryFee} | Total: LKR ${o.grandTotal}</p>
+                        <p class="text-[11px] text-slate-300">Status: <strong>${escapeHtml(o.adminStatus)}</strong> → Rider: <strong>${escapeHtml(o.riderStatus)}</strong></p>
+                    </div>
+                    <div class="flex gap-2 shrink-0">
+                        ${o.adminStatus === 'PENDING_ADMIN_APPROVAL' ? `
+                            <button onclick="approveOrderForRiders('${o.id}')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-2 rounded-lg cursor-pointer">Approve & Show Rider</button>
+                            <button onclick="rejectOrderAdmin('${o.id}')" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-3 py-2 rounded-lg cursor-pointer">Not Available</button>
+                        ` : `<span class="text-[11px] text-slate-400 px-2 py-1 rounded bg-slate-800">${escapeHtml(o.riderStatus)}</span>`}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function approveRiderAndSendOtp(riderId) {
+            const otp = String(Math.floor(100000 + Math.random() * 900000));
+            db.ref('riders/' + riderId).update({
+                status: 'OTP_SENT',
+                otpCode: otp,
+                otpVerified: false,
+                approvedAt: Date.now(),
+                securityNotice: 'Approved by Admin. Enter your 6-digit OTP to log in (valid for 7 days security cycle).'
+            });
+        }
+
+        function expireRiderWeekly(riderId) {
+            db.ref('riders/' + riderId).update({
+                status: 'WEEKLY_REVERIFY_REQUIRED',
+                otpVerified: false,
+                otpCode: null,
+                securityNotice: 'Security Notice: Your weekly rider access was reset for security. Please submit a new login request to receive a fresh OTP.'
+            });
+        }
+
+        function renderAdminRiders() {
+            const el = document.getElementById('adminRidersList');
+            if (!el) return;
+            const list = Object.values(ridersMap);
+            if (!list.length) {
+                el.innerHTML = `<p class="text-xs text-slate-400">No rider requests yet.</p>`;
+                return;
+            }
+            el.innerHTML = list.map(r => `
+                <div class="bg-brand-dark border border-brand-border rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                    <div class="space-y-1">
+                        <p class="font-bold text-white">${escapeHtml(r.name)} • ${escapeHtml(r.phone)}</p>
+                        <p class="text-slate-400">Bike: <strong>${escapeHtml(r.bikeModel)}</strong> (${escapeHtml(r.bikeColor)}) • Plate: <span class="font-mono text-amber-300">${escapeHtml(r.plate)}</span></p>
+                        <p class="text-[11px]">Status: <strong class="text-amber-300">${escapeHtml(r.status)}</strong> ${r.otpCode ? `| Generated OTP: <span class="font-mono bg-slate-800 px-2 py-0.5 rounded text-emerald-400">${escapeHtml(r.otpCode)}</span>` : ''}</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 shrink-0">
+                        <button onclick="approveRiderAndSendOtp('${r.id}')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-2 rounded-lg cursor-pointer">Accept & Send OTP</button>
+                        <button onclick="expireRiderWeekly('${r.id}')" class="bg-amber-600 hover:bg-amber-500 text-white font-bold px-3 py-2 rounded-lg cursor-pointer">Weekly Reset / Reject</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         function savePhoneNumber() {
             const newPhone = document.getElementById('adminPhoneInput').value.trim();
             if (newPhone) {
                 db.ref('phone').set(newPhone);
-                alert('WhatsApp Number Updated Globally!');
+                alert('WhatsApp Number Updated!');
             }
+        }
+
+        function saveDeliveryRates() {
+            const baseFee = Math.max(0, Number(document.getElementById('rateBaseInput').value) || 100);
+            const perKm = Math.max(0, Number(document.getElementById('ratePerKmInput').value) || 60);
+            db.ref('deliveryRates').set({ baseFee, perKm });
+            alert('Delivery Fee Rate Updated (100% goes to Rider)!');
+        }
+
+        function renderAdminMenuList() {
+            const list = document.getElementById('adminMenuList');
+            if (!list) return;
+
+            list.innerHTML = currentMenu.map(item => {
+                const avail = isItemAvailable(item);
+                return `
+                <div class="bg-brand-dark p-3 rounded-xl border border-brand-border flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <img src="${(item.image || '').trim()}" onerror="this.src='${fallbackImage}'" class="w-10 h-10 rounded-lg object-cover shrink-0">
+                        <div class="min-w-0">
+                            <p class="text-xs font-bold text-white truncate">${escapeHtml(item.title)}</p>
+                            <p class="text-[10px] text-slate-400">LKR ${escapeHtml(item.price)} • <span class="${avail ? 'text-emerald-400' : 'text-rose-400'}">${avail ? 'Available' : 'Unavailable'}</span></p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 shrink-0">
+                        <button onclick="toggleMenuAvailability(${item.id})" class="text-xs ${avail ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'} px-2.5 py-1.5 rounded-lg border cursor-pointer">
+                            ${avail ? 'Mark Unavailable' : 'Mark Available'}
+                        </button>
+                        <button onclick="editMenuItem(${item.id})" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1.5 rounded-lg border border-brand-border cursor-pointer">Edit</button>
+                        <button onclick="deleteMenuItem(${item.id})" class="text-xs bg-rose-500/20 hover:bg-rose-500 text-rose-400 hover:text-white px-2.5 py-1.5 rounded-lg border border-rose-500/30 cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function toggleMenuAvailability(id) {
+            const updated = currentMenu.map(i => i.id === id ? { ...i, available: !isItemAvailable(i) } : i);
+            db.ref('menu').set(updated);
         }
 
         function editMenuItem(id) {
             const item = currentMenu.find(i => i.id === id);
             if (!item) return;
-
             const newTitle = prompt("Edit Item Title:", item.title);
             if (newTitle === null) return;
             const newPrice = prompt("Edit Price (LKR):", item.price);
@@ -370,20 +771,16 @@
             const newImage = prompt("Edit Image URL (Link):", item.image);
             if (newImage === null) return;
 
-            const updatedMenu = currentMenu.map(i => {
-                if (i.id === id) {
-                    return { ...i, title: newTitle, price: newPrice, description: newDesc, image: newImage.trim() };
-                }
-                return i;
-            });
-
+            const updatedMenu = currentMenu.map(i => i.id === id
+                ? { ...i, title: newTitle, price: newPrice, description: newDesc, image: newImage.trim() }
+                : i
+            );
             db.ref('menu').set(updatedMenu);
         }
 
         function deleteMenuItem(id) {
             if (confirm("Are you sure you want to delete this item?")) {
-                const updatedMenu = currentMenu.filter(i => i.id !== id);
-                db.ref('menu').set(updatedMenu);
+                db.ref('menu').set(currentMenu.filter(i => i.id !== id));
             }
         }
 
@@ -400,12 +797,19 @@
                 id: Date.now(),
                 title,
                 price,
+                available: true,
                 description,
                 image: image.trim()
             };
+            db.ref('menu').set([...currentMenu, newItem]);
+        }
 
-            const updatedMenu = [...currentMenu, newItem];
-            db.ref('menu').set(updatedMenu);
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
         }
     </script>
 </body>
